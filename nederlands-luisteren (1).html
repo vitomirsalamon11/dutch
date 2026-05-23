@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nederlands Luisteren</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f0f0f;--s1:#1a1a1a;--s2:#222;--s3:#2a2a2a;
+  --b1:#2e2e2e;--b2:#3a3a3a;
+  --t1:#f0ede8;--t2:#9a9088;--t3:#554e48;
+  --ac:#e8b86d;--ac2:#c4924a;--ac3:#2e2010;
+  --gn:#5a9e6f;--gnb:#0a1e12;--gnt:#7dd4a0;
+  --rd:#c45a5a;--rdb:#1e0a0a;--rdt:#f4a0a0;
+  --r:14px;--rs:9px;
+}
+body{background:var(--bg);color:var(--t1);font-family:'DM Mono',monospace;font-size:15px;min-height:100vh}
+.page{display:none;min-height:100vh;padding:2rem 1.5rem;max-width:700px;margin:0 auto;flex-direction:column}
+.page.on{display:flex}
+/* home */
+.logo{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:600;color:var(--ac);letter-spacing:-1px;line-height:1;margin-bottom:6px}
+.logo em{color:var(--t3);font-weight:300;font-style:italic}
+.sub{color:var(--t2);font-size:12px}
+.lbl{font-size:10px;color:var(--t3);letter-spacing:2.5px;text-transform:uppercase;margin:1.8rem 0 .75rem}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:10px}
+.ccard{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);padding:1.1rem;cursor:pointer;transition:.15s}
+.ccard:hover{border-color:var(--ac2);background:var(--s2)}
+.ccard.on{border-color:var(--ac);background:var(--ac3)}
+.ccard .ic{font-size:1.4rem;display:block;margin-bottom:7px}
+.ccard h3{font-family:'Fraunces',serif;font-weight:300;font-size:.95rem;margin-bottom:3px}
+.ccard p{font-size:10.5px;color:var(--t2);line-height:1.5}
+.mlist{display:flex;flex-direction:column;gap:8px}
+.mbtn{background:var(--s1);border:1px solid var(--b1);border-radius:var(--rs);padding:.9rem 1.1rem;cursor:pointer;text-align:left;transition:.15s;display:flex;align-items:flex-start;gap:11px}
+.mbtn:hover{border-color:var(--ac2);background:var(--s2)}
+.mbtn.on{border-color:var(--ac);background:var(--ac3)}
+.mnum{font-family:'Fraunces',serif;font-size:1.4rem;color:var(--ac);min-width:26px;line-height:1}
+.mtit{font-size:13px;font-weight:500;margin-bottom:2px}
+.mdsc{font-size:11px;color:var(--t2);line-height:1.5}
+.srow{display:flex;gap:10px;align-items:flex-end;margin-top:1.5rem}
+.srow label{font-size:10px;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;display:block;margin-bottom:6px}
+select{background:var(--s2);border:1px solid var(--b2);border-radius:var(--rs);padding:.55rem .9rem;color:var(--t1);font-family:'DM Mono',monospace;font-size:12px;outline:none;cursor:pointer}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--ac);color:#160e00;border:none;border-radius:var(--rs);padding:.7rem 1.4rem;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;cursor:pointer;transition:.15s;white-space:nowrap}
+.btn:hover{background:var(--ac2)}
+.gbtn{background:transparent;color:var(--t2);border:1px solid var(--b2)}
+.gbtn:hover{background:var(--s2);color:var(--t1)}
+.sbtn{padding:.45rem .9rem;font-size:12px}
+/* exercise */
+.tbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.4rem}
+.back{background:none;border:none;color:var(--t3);cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;padding:4px 0;transition:.15s}
+.back:hover{color:var(--t2)}
+.qc{font-size:11px;color:var(--t3)}
+.pw{background:var(--s2);border-radius:4px;height:3px;margin-bottom:1.5rem;overflow:hidden}
+.pf{background:var(--ac);height:3px;border-radius:4px;transition:width .45s}
+.ecard{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);padding:1.5rem}
+.etype{font-size:10px;color:var(--ac2);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.cpill{display:inline-block;font-size:9.5px;color:var(--t3);letter-spacing:1px;text-transform:uppercase;border:1px solid var(--b2);border-radius:5px;padding:2px 8px;margin-bottom:14px}
+/* audio */
+.azone{background:var(--s2);border-radius:var(--rs);padding:1.3rem 1.1rem 1rem;margin-bottom:1.3rem;display:flex;flex-direction:column;align-items:center;gap:10px}
+.pbig{width:62px;height:62px;border-radius:50%;background:var(--ac);color:#160e00;border:none;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;transition:.15s}
+.pbig:hover{background:var(--ac2);transform:scale(1.06)}
+.pbig.spin{animation:pulse .9s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.pbtns{display:flex;gap:8px}
+.pbtn{background:var(--s3);border:1px solid var(--b2);border-radius:var(--rs);padding:.45rem .9rem;color:var(--t2);font-family:'DM Mono',monospace;font-size:11px;cursor:pointer;transition:.15s}
+.pbtn:hover{border-color:var(--ac2);color:var(--ac)}
+.ahint{font-size:10.5px;color:var(--t3)}
+/* type */
+.tinp{width:100%;background:var(--s2);border:1.5px solid var(--b2);border-radius:var(--rs);padding:.85rem 1rem;color:var(--t1);font-family:'Fraunces',serif;font-size:1.25rem;font-weight:300;outline:none;transition:.15s;margin-bottom:1rem;caret-color:var(--ac)}
+.tinp::placeholder{color:var(--t3);font-style:italic}
+.tinp:focus{border-color:var(--ac2)}
+.tinp.ok{border-color:var(--gn);background:var(--gnb)}
+.tinp.bad{border-color:var(--rd);background:var(--rdb)}
+/* mc */
+.mcg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1rem}
+.mco{background:var(--s2);border:1px solid var(--b2);border-radius:var(--rs);padding:.85rem 1rem;cursor:pointer;font-size:12.5px;color:var(--t1);transition:.15s;text-align:left;font-family:'DM Mono',monospace;line-height:1.45}
+.mco:hover:not(:disabled){border-color:var(--ac2);background:var(--s3)}
+.mco:disabled{cursor:default}
+.mco.ok{border-color:var(--gn)!important;background:var(--gnb)!important;color:var(--gnt)}
+.mco.bad{border-color:var(--rd)!important;background:var(--rdb)!important;color:var(--rdt)}
+/* builder */
+.eprompt{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:300;color:var(--t1);line-height:1.55;margin-bottom:1.2rem;padding:.9rem 1rem;background:var(--s2);border-radius:var(--rs);border-left:3px solid var(--ac)}
+.blbl{font-size:10px;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.barea{min-height:58px;border:1px dashed var(--b2);border-radius:var(--rs);padding:9px 10px;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;background:var(--s2);align-content:flex-start}
+.cbank{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
+.chip{background:var(--s3);border:1px solid var(--b2);border-radius:6px;padding:5px 11px;cursor:pointer;font-family:'Fraunces',serif;font-size:.95rem;font-weight:300;color:var(--t1);transition:.1s;user-select:none}
+.chip:hover{border-color:var(--ac);color:var(--ac)}
+.chip.used{background:var(--ac3);border-color:var(--ac2);color:var(--ac)}
+.chip.cok{background:var(--gnb);border-color:var(--gn);color:var(--gnt);cursor:default}
+.chip.cbad{background:var(--rdb);border-color:var(--rd);color:var(--rdt);cursor:default}
+/* feedback */
+.fb{border-radius:var(--rs);padding:.85rem 1rem;margin-bottom:1rem;font-size:13px;line-height:1.55}
+.fb.ok{background:var(--gnb);border:1px solid var(--gn);color:var(--gnt)}
+.fb.bad{background:var(--rdb);border:1px solid var(--rd);color:var(--rdt)}
+.fb .rev{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:300;margin-top:6px;color:var(--t1)}
+.arow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+/* end */
+.ewrap{display:flex;flex-direction:column;align-items:center;padding:2.5rem 0;gap:8px}
+.escore{font-family:'Fraunces',serif;font-size:5rem;font-weight:600;color:var(--ac);line-height:1}
+.emsg{color:var(--t2);font-size:12px}
+.ebk{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:1.5rem 0;width:100%;max-width:340px}
+.bki{background:var(--s2);border-radius:var(--rs);padding:.9rem;text-align:center}
+.bkv{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:300}
+.bkl{font-size:9.5px;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px}
+.ebtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+</style>
+</head>
+<body>
+
+<div id="pg-home" class="page on">
+  <div style="margin-bottom:2rem">
+    <div class="logo">Nederlands<em>luisteren</em></div>
+    <div class="sub">vježbaj slušanje i vokabular — 160 rečenica za početnike</div>
+  </div>
+  <div class="lbl">kategorija</div>
+  <div class="cgrid" id="cgrid"></div>
+  <div class="lbl">vrsta vježbe</div>
+  <div class="mlist" id="mlist"></div>
+  <div class="srow">
+    <div>
+      <label>broj pitanja</label>
+      <select id="qcount">
+        <option value="10">10 pitanja</option>
+        <option value="15">15 pitanja</option>
+        <option value="20" selected>20 pitanja</option>
+        <option value="30">30 pitanja</option>
+        <option value="50">50 pitanja</option>
+      </select>
+    </div>
+    <button class="btn" onclick="startSession()">Pocni &rarr;</button>
+    <button class="btn gbtn sbtn" onclick="debugTTS()" style="margin-left:4px">&#9654; test zvuk</button>
+  </div>
+</div>
+
+<div id="pg-ex" class="page">
+  <div class="tbar">
+    <button class="back" onclick="goHome()">← natrag</button>
+    <div class="qc" id="qc">1 / 20</div>
+  </div>
+  <div class="pw"><div class="pf" id="pf" style="width:0%"></div></div>
+  <div id="excontent"></div>
+</div>
+
+<div id="pg-end" class="page">
+  <div class="ewrap">
+    <div style="font-size:11px;color:var(--t3);letter-spacing:2.5px;text-transform:uppercase">sesija završena</div>
+    <div class="escore" id="escore">0%</div>
+    <div class="emsg" id="emsg"></div>
+    <div class="ebk" id="ebk"></div>
+    <div class="ebtns">
+      <button class="btn" onclick="startSession()">Ponovi</button>
+      <button class="btn gbtn" onclick="goHome()">Postavke</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var DATA = [
+  {id:"e01",d:"Hallo, hoe gaat het?",e:"Hello, how are you?",c:"Pozdrav"},
+  {id:"e02",d:"Goedemorgen!",e:"Good morning!",c:"Pozdrav"},
+  {id:"e03",d:"Goedemiddag.",e:"Good afternoon.",c:"Pozdrav"},
+  {id:"e04",d:"Goedenavond.",e:"Good evening.",c:"Pozdrav"},
+  {id:"e05",d:"Goedenacht.",e:"Good night.",c:"Pozdrav"},
+  {id:"e06",d:"Tot ziens.",e:"Goodbye.",c:"Pozdrav"},
+  {id:"e07",d:"Tot morgen.",e:"See you tomorrow.",c:"Pozdrav"},
+  {id:"e08",d:"Tot later.",e:"See you later.",c:"Pozdrav"},
+  {id:"e09",d:"Dank je wel.",e:"Thank you.",c:"Pozdrav"},
+  {id:"e10",d:"Heel erg bedankt.",e:"Thank you very much.",c:"Pozdrav"},
+  {id:"e11",d:"Alstublieft.",e:"Here you go.",c:"Pozdrav"},
+  {id:"e12",d:"Graag gedaan.",e:"You are welcome.",c:"Pozdrav"},
+  {id:"e13",d:"Sorry.",e:"Sorry.",c:"Pozdrav"},
+  {id:"e14",d:"Geen probleem.",e:"No problem.",c:"Pozdrav"},
+  {id:"e15",d:"Ik begrijp het niet.",e:"I do not understand.",c:"Pozdrav"},
+  {id:"e16",d:"Kunt u dat herhalen?",e:"Can you repeat that?",c:"Pozdrav"},
+  {id:"e17",d:"Spreekt u Engels?",e:"Do you speak English?",c:"Pozdrav"},
+  {id:"e18",d:"Ik spreek een beetje Nederlands.",e:"I speak a little Dutch.",c:"Pozdrav"},
+  {id:"e19",d:"Hoe heet je?",e:"What is your name?",c:"Pozdrav"},
+  {id:"e20",d:"Mijn naam is Ana.",e:"My name is Ana.",c:"Pozdrav"},
+  {id:"e21",d:"Aangenaam kennis te maken.",e:"Nice to meet you.",c:"Pozdrav"},
+  {id:"e22",d:"Hoe oud ben je?",e:"How old are you?",c:"Pozdrav"},
+  {id:"e23",d:"Waar kom je vandaan?",e:"Where are you from?",c:"Pozdrav"},
+  {id:"e24",d:"Ik kom uit Kroatie.",e:"I come from Croatia.",c:"Pozdrav"},
+  {id:"e25",d:"Ja, natuurlijk.",e:"Yes, of course.",c:"Pozdrav"},
+  {id:"e26",d:"Nee, dank je.",e:"No, thank you.",c:"Pozdrav"},
+  {id:"e27",d:"Een moment, alstublieft.",e:"One moment please.",c:"Pozdrav"},
+  {id:"e28",d:"Ik weet het niet.",e:"I do not know.",c:"Pozdrav"},
+  {id:"e29",d:"Dat klopt.",e:"That is correct.",c:"Pozdrav"},
+  {id:"e30",d:"Dat is niet waar.",e:"That is not true.",c:"Pozdrav"},
+  {id:"d01",d:"Ik wil graag koffie.",e:"I would like coffee.",c:"Hrana"},
+  {id:"d02",d:"Twee bier, alstublieft.",e:"Two beers please.",c:"Hrana"},
+  {id:"d03",d:"Mag ik de menukaart?",e:"May I have the menu?",c:"Hrana"},
+  {id:"d04",d:"Wat wilt u eten?",e:"What would you like to eat?",c:"Hrana"},
+  {id:"d05",d:"Mag ik de rekening?",e:"May I have the bill?",c:"Hrana"},
+  {id:"d06",d:"Het eten is lekker.",e:"The food is tasty.",c:"Hrana"},
+  {id:"d07",d:"Ik heb honger.",e:"I am hungry.",c:"Hrana"},
+  {id:"d08",d:"Ik heb dorst.",e:"I am thirsty.",c:"Hrana"},
+  {id:"d09",d:"Een glas water, alstublieft.",e:"A glass of water please.",c:"Hrana"},
+  {id:"d10",d:"Ik eet een appel.",e:"I am eating an apple.",c:"Hrana"},
+  {id:"d11",d:"Het brood is vers.",e:"The bread is fresh.",c:"Hrana"},
+  {id:"d12",d:"Ik drink thee.",e:"I am drinking tea.",c:"Hrana"},
+  {id:"d13",d:"Heeft u een tafel voor twee?",e:"Do you have a table for two?",c:"Hrana"},
+  {id:"d14",d:"Ik ben allergisch voor noten.",e:"I am allergic to nuts.",c:"Hrana"},
+  {id:"d15",d:"Kan ik zonder vlees bestellen?",e:"Can I order without meat?",c:"Hrana"},
+  {id:"d16",d:"Het is te zout.",e:"It is too salty.",c:"Hrana"},
+  {id:"d17",d:"Ik wil graag een dessert.",e:"I would like a dessert.",c:"Hrana"},
+  {id:"d18",d:"De soep is heet.",e:"The soup is hot.",c:"Hrana"},
+  {id:"d19",d:"Ik houd van kaas.",e:"I love cheese.",c:"Hrana"},
+  {id:"d20",d:"Wat kost dit?",e:"What does this cost?",c:"Hrana"},
+  {id:"d21",d:"Is er een vegetarisch gerecht?",e:"Is there a vegetarian dish?",c:"Hrana"},
+  {id:"d22",d:"Ik neem de dagschotel.",e:"I will take the dish of the day.",c:"Hrana"},
+  {id:"d23",d:"Met of zonder suiker?",e:"With or without sugar?",c:"Hrana"},
+  {id:"d24",d:"De melk is koud.",e:"The milk is cold.",c:"Hrana"},
+  {id:"d25",d:"Ik wil graag de vis.",e:"I would like the fish.",c:"Hrana"},
+  {id:"t01",d:"Waar is het station?",e:"Where is the station?",c:"Smjer"},
+  {id:"t02",d:"Hoe kom ik bij het centrum?",e:"How do I get to the center?",c:"Smjer"},
+  {id:"t03",d:"Ga rechtdoor.",e:"Go straight ahead.",c:"Smjer"},
+  {id:"t04",d:"Sla linksaf.",e:"Turn left.",c:"Smjer"},
+  {id:"t05",d:"Sla rechtsaf.",e:"Turn right.",c:"Smjer"},
+  {id:"t06",d:"Is het ver weg?",e:"Is it far away?",c:"Smjer"},
+  {id:"t07",d:"Hoe ver is het lopen?",e:"How far is it on foot?",c:"Smjer"},
+  {id:"t08",d:"Ik zoek het hotel.",e:"I am looking for the hotel.",c:"Smjer"},
+  {id:"t09",d:"Wanneer vertrekt de trein?",e:"When does the train leave?",c:"Smjer"},
+  {id:"t10",d:"Een kaartje naar Amsterdam.",e:"A ticket to Amsterdam.",c:"Smjer"},
+  {id:"t11",d:"De bus is te laat.",e:"The bus is late.",c:"Smjer"},
+  {id:"t12",d:"Welk perron?",e:"Which platform?",c:"Smjer"},
+  {id:"t13",d:"Ik moet overstappen.",e:"I have to transfer.",c:"Smjer"},
+  {id:"t14",d:"Is dit de goede richting?",e:"Is this the right direction?",c:"Smjer"},
+  {id:"t15",d:"Ik ben verdwaald.",e:"I am lost.",c:"Smjer"},
+  {id:"t16",d:"Hoe laat gaat de bus?",e:"What time does the bus go?",c:"Smjer"},
+  {id:"t17",d:"Mag ik hier instappen?",e:"Can I board here?",c:"Smjer"},
+  {id:"t18",d:"Een retourkaartje, alstublieft.",e:"A return ticket please.",c:"Smjer"},
+  {id:"t19",d:"Waar is de bushalte?",e:"Where is the bus stop?",c:"Smjer"},
+  {id:"t20",d:"Hoe lang duurt de reis?",e:"How long does the journey take?",c:"Smjer"},
+  {id:"t21",d:"Links is het park.",e:"On the left is the park.",c:"Smjer"},
+  {id:"t22",d:"Rechts is het museum.",e:"On the right is the museum.",c:"Smjer"},
+  {id:"t23",d:"De apotheek is verderop.",e:"The pharmacy is further along.",c:"Smjer"},
+  {id:"t24",d:"Is er een taxi standplaats?",e:"Is there a taxi stand?",c:"Smjer"},
+  {id:"t25",d:"Kunt u mij helpen?",e:"Can you help me?",c:"Smjer"},
+  {id:"s01",d:"Ik werk elke dag.",e:"I work every day.",c:"Zivot"},
+  {id:"s02",d:"Ik ga naar de winkel.",e:"I am going to the store.",c:"Zivot"},
+  {id:"s03",d:"Het is mooi weer vandaag.",e:"The weather is nice today.",c:"Zivot"},
+  {id:"s04",d:"Het regent buiten.",e:"It is raining outside.",c:"Zivot"},
+  {id:"s05",d:"Ik sta om zeven uur op.",e:"I get up at seven o clock.",c:"Zivot"},
+  {id:"s06",d:"Ik ga vroeg slapen.",e:"I go to sleep early.",c:"Zivot"},
+  {id:"s07",d:"Het is koud vandaag.",e:"It is cold today.",c:"Zivot"},
+  {id:"s08",d:"De winkel is dicht.",e:"The shop is closed.",c:"Zivot"},
+  {id:"s09",d:"Hoeveel kost dat?",e:"How much does that cost?",c:"Zivot"},
+  {id:"s10",d:"Ik betaal met pinpas.",e:"I pay by debit card.",c:"Zivot"},
+  {id:"s11",d:"Heeft u een zak?",e:"Do you have a bag?",c:"Zivot"},
+  {id:"s12",d:"De supermarkt is dichtbij.",e:"The supermarket is nearby.",c:"Zivot"},
+  {id:"s13",d:"Ik heb dit nodig.",e:"I need this.",c:"Zivot"},
+  {id:"s14",d:"Kan ik u helpen?",e:"Can I help you?",c:"Zivot"},
+  {id:"s15",d:"Ik zoek iets voor mijn kind.",e:"I am looking for something for my child.",c:"Zivot"},
+  {id:"s16",d:"Is er een apotheek hier?",e:"Is there a pharmacy here?",c:"Zivot"},
+  {id:"s17",d:"Het postkantoor is links.",e:"The post office is on the left.",c:"Zivot"},
+  {id:"s18",d:"Ik bel u morgen.",e:"I will call you tomorrow.",c:"Zivot"},
+  {id:"s19",d:"Mijn telefoon is leeg.",e:"My phone is dead.",c:"Zivot"},
+  {id:"s20",d:"Heeft u wifi hier?",e:"Do you have wifi here?",c:"Zivot"},
+  {id:"s21",d:"Ik ben moe.",e:"I am tired.",c:"Zivot"},
+  {id:"s22",d:"Ik voel me ziek.",e:"I feel sick.",c:"Zivot"},
+  {id:"s23",d:"Ik heb hoofdpijn.",e:"I have a headache.",c:"Zivot"},
+  {id:"s24",d:"De dokter is vrij.",e:"The doctor is available.",c:"Zivot"},
+  {id:"s25",d:"Ik heb een afspraak.",e:"I have an appointment.",c:"Zivot"},
+  {id:"s26",d:"Hoe laat is het?",e:"What time is it?",c:"Zivot"},
+  {id:"s27",d:"Het is tien uur.",e:"It is ten o clock.",c:"Zivot"},
+  {id:"s28",d:"De vergadering begint om negen.",e:"The meeting starts at nine.",c:"Zivot"},
+  {id:"s29",d:"Ik werk vanuit huis.",e:"I work from home.",c:"Zivot"},
+  {id:"s30",d:"Vandaag is het vrijdag.",e:"Today is Friday.",c:"Zivot"},
+  {id:"n01",d:"Ik heet Peter.",e:"My name is Peter.",c:"Razgovor"},
+  {id:"n02",d:"Wat doe je voor werk?",e:"What do you do for work?",c:"Razgovor"},
+  {id:"n03",d:"Ik ben leraar.",e:"I am a teacher.",c:"Razgovor"},
+  {id:"n04",d:"Ik woon in Amsterdam.",e:"I live in Amsterdam.",c:"Razgovor"},
+  {id:"n05",d:"Heb je kinderen?",e:"Do you have children?",c:"Razgovor"},
+  {id:"n06",d:"Ik heb een hond.",e:"I have a dog.",c:"Razgovor"},
+  {id:"n07",d:"Wat zijn uw hobbys?",e:"What are your hobbies?",c:"Razgovor"},
+  {id:"n08",d:"Ik houd van muziek.",e:"I love music.",c:"Razgovor"},
+  {id:"n09",d:"Ik speel gitaar.",e:"I play guitar.",c:"Razgovor"},
+  {id:"n10",d:"Ik lees graag boeken.",e:"I like reading books.",c:"Razgovor"},
+  {id:"n11",d:"Ik kijk graag films.",e:"I like watching films.",c:"Razgovor"},
+  {id:"n12",d:"Ben je getrouwd?",e:"Are you married?",c:"Razgovor"},
+  {id:"n13",d:"Ik heb een zus.",e:"I have a sister.",c:"Razgovor"},
+  {id:"n14",d:"Mijn vader is zestig.",e:"My father is sixty.",c:"Razgovor"},
+  {id:"n15",d:"We wonen samen.",e:"We live together.",c:"Razgovor"},
+  {id:"n16",d:"Dat is interessant.",e:"That is interesting.",c:"Razgovor"},
+  {id:"n17",d:"Ik begrijp je.",e:"I understand you.",c:"Razgovor"},
+  {id:"n18",d:"Kun je dat uitleggen?",e:"Can you explain that?",c:"Razgovor"},
+  {id:"n19",d:"Wat vind jij ervan?",e:"What do you think about it?",c:"Razgovor"},
+  {id:"n20",d:"Ik ben het eens.",e:"I agree.",c:"Razgovor"},
+  {id:"h01",d:"Ik zoek een kamer.",e:"I am looking for a room.",c:"Hotel"},
+  {id:"h02",d:"Heeft u een kamer vrij?",e:"Do you have a room available?",c:"Hotel"},
+  {id:"h03",d:"Voor hoeveel nachten?",e:"For how many nights?",c:"Hotel"},
+  {id:"h04",d:"Is het ontbijt inbegrepen?",e:"Is breakfast included?",c:"Hotel"},
+  {id:"h05",d:"Ik wil inchecken.",e:"I would like to check in.",c:"Hotel"},
+  {id:"h06",d:"Ik wil uitchecken.",e:"I would like to check out.",c:"Hotel"},
+  {id:"h07",d:"De kamer is te klein.",e:"The room is too small.",c:"Hotel"},
+  {id:"h08",d:"Er is geen warm water.",e:"There is no hot water.",c:"Hotel"},
+  {id:"h09",d:"Kunt u mijn bagage bewaren?",e:"Can you store my luggage?",c:"Hotel"},
+  {id:"h10",d:"Wat is de uitchectijd?",e:"What is the checkout time?",c:"Hotel"},
+  {id:"h11",d:"De lift is buiten werking.",e:"The elevator is out of order.",c:"Hotel"},
+  {id:"h12",d:"Heeft u een stille kamer?",e:"Do you have a quiet room?",c:"Hotel"},
+  {id:"h13",d:"Ik wil graag een reservering maken.",e:"I would like to make a reservation.",c:"Hotel"},
+  {id:"h14",d:"Is er parkeergelegenheid?",e:"Is there parking available?",c:"Hotel"},
+  {id:"h15",d:"Wat is het wachtwoord voor wifi?",e:"What is the wifi password?",c:"Hotel"},
+  {id:"c01",d:"Hoeveel kost dit shirt?",e:"How much does this shirt cost?",c:"Kupnja"},
+  {id:"c02",d:"Heeft u dit in maat M?",e:"Do you have this in size M?",c:"Kupnja"},
+  {id:"c03",d:"Ik pas dit even.",e:"I will try this on.",c:"Kupnja"},
+  {id:"c04",d:"Dit is te groot.",e:"This is too big.",c:"Kupnja"},
+  {id:"c05",d:"Dit is te klein.",e:"This is too small.",c:"Kupnja"},
+  {id:"c06",d:"Heeft u iets goedkopers?",e:"Do you have something cheaper?",c:"Kupnja"},
+  {id:"c07",d:"Ik neem het.",e:"I will take it.",c:"Kupnja"},
+  {id:"c08",d:"Kan ik dit ruilen?",e:"Can I exchange this?",c:"Kupnja"},
+  {id:"c09",d:"Waar zijn de paskamers?",e:"Where are the fitting rooms?",c:"Kupnja"},
+  {id:"c10",d:"Heeft u de bon nog?",e:"Do you still have the receipt?",c:"Kupnja"},
+  {id:"c11",d:"Dit is in de aanbieding.",e:"This is on sale.",c:"Kupnja"},
+  {id:"c12",d:"Hoeveel korting is dat?",e:"How much discount is that?",c:"Kupnja"},
+  {id:"c13",d:"Ik betaal contant.",e:"I pay in cash.",c:"Kupnja"},
+  {id:"c14",d:"Kunt u dit inpakken?",e:"Can you wrap this up?",c:"Kupnja"},
+  {id:"c15",d:"Is dit van leer?",e:"Is this made of leather?",c:"Kupnja"}
+];
+
+var CATS = [
+  {id:"sve",  label:"Sve kategorije", icon:"NL", desc:"Svih 160 recˇenica"},
+  {id:"Pozdrav", label:"Pozdrav i osnove", icon:"👋", desc:"30 izraza"},
+  {id:"Hrana",   label:"Hrana i pice",    icon:"🍽", desc:"25 izraza"},
+  {id:"Smjer",   label:"Putovanje",       icon:"🚆", desc:"25 izraza"},
+  {id:"Zivot",   label:"Svakodnevni zivot",icon:"🏠",desc:"30 izraza"},
+  {id:"Razgovor",label:"Razgovor",        icon:"💬", desc:"20 izraza"},
+  {id:"Hotel",   label:"Hotel",           icon:"🏨", desc:"15 izraza"},
+  {id:"Kupnja",  label:"Kupovina",        icon:"🛍", desc:"15 izraza"}
+];
+
+var MODES = [
+  {id:0, num:"①", t:"Utipkaj sto cujes",   d:"Cues nizozemski i tipkas ga. Najteze i najkorisnije."},
+  {id:1, num:"②", t:"Audio → Znacenje",    d:"Cues nizozemski i biras prijevod od 4 opcije."},
+  {id:2, num:"③", t:"Slozi recenicu",      d:"Vides engleski i slazˇes nizozemske rijeci."},
+  {id:3, num:"④", t:"Mijesano (preporuka)",d:"Automatski mijenja sve tri vrste vjezbi."}
+];
+
+var selCat = "sve";
+var selMode = 3;
+var sess = null;
+var curP = null;
+var answered = false;
+var bAns = [];
+var bWords = [];
+
+/* ── TTS ── */
+var synth = window.speechSynthesis;
+var nlVoice = null;
+
+function initVoices() {
+  var voices = synth.getVoices();
+  for (var i = 0; i < voices.length; i++) {
+    if (voices[i].lang === "nl-NL" || voices[i].lang.indexOf("nl") === 0) {
+      nlVoice = voices[i];
+      break;
+    }
+  }
+}
+
+if (synth.onvoiceschanged !== undefined) {
+  synth.onvoiceschanged = initVoices;
+}
+initVoices();
+setTimeout(initVoices, 500);
+setTimeout(initVoices, 2000);
+
+function speak(text, rate) {
+  rate = rate || 1.0;
+  initVoices();
+  // NO cancel() — Chrome silently drops utterances if cancel+speak in same tick
+  var u = new SpeechSynthesisUtterance(text);
+  u.lang = "nl-NL";
+  u.rate = rate;
+  u.pitch = 1.0;
+  if (nlVoice) {
+    u.voice = nlVoice;
+  }
+  u.onerror = function(e) { console.log("TTS err:", e.error); };
+  u.onstart = function() { console.log("TTS started, voice:", u.voice ? u.voice.name : "default", "lang:", u.lang); };
+  synth.speak(u);
+}
+
+function debugTTS() {
+  var voices = synth.getVoices();
+  var msg = "Ukupno glasova: " + voices.length + "\n";
+  var nlVoices = voices.filter(function(v){ return v.lang.indexOf("nl") === 0; });
+  msg += "NL glasovi: " + nlVoices.length + "\n";
+  for(var i=0; i<nlVoices.length; i++) msg += "  - " + nlVoices[i].name + " (" + nlVoices[i].lang + ")\n";
+  if(nlVoices.length === 0) msg += "NEMA NL GLASOVA — Chrome nije preuzeo jezicni paket!\n";
+  msg += "\nPokusavam reproducirati testnu recenicu...";
+  alert(msg);
+  var u = new SpeechSynthesisUtterance("Hallo, hoe gaat het?");
+  u.lang = "nl-NL";
+  synth.speak(u);
+}
+
+/* ── NAV ── */
+function show(id) {
+  var pages = document.querySelectorAll(".page");
+  for (var i = 0; i < pages.length; i++) pages[i].classList.remove("on");
+  document.getElementById(id).classList.add("on");
+}
+
+function goHome() {
+  synth.cancel();
+  curP = null;
+  answered = false;
+  show("pg-home");
+}
+
+/* ── HOME ── */
+function buildHome() {
+  var cg = document.getElementById("cgrid");
+  cg.innerHTML = "";
+  for (var i = 0; i < CATS.length; i++) {
+    (function(cat) {
+      var d = document.createElement("div");
+      d.className = "ccard" + (selCat === cat.id ? " on" : "");
+      d.innerHTML = "<span class='ic'>" + cat.icon + "</span><h3>" + cat.label + "</h3><p>" + cat.desc + "</p>";
+      d.onclick = function() { selCat = cat.id; buildHome(); };
+      cg.appendChild(d);
+    })(CATS[i]);
+  }
+
+  var ml = document.getElementById("mlist");
+  ml.innerHTML = "";
+  for (var j = 0; j < MODES.length; j++) {
+    (function(m) {
+      var b = document.createElement("button");
+      b.className = "mbtn" + (selMode === m.id ? " on" : "");
+      b.innerHTML = "<span class='mnum'>" + m.num + "</span><div><div class='mtit'>" + m.t + "</div><div class='mdsc'>" + m.d + "</div></div>";
+      b.onclick = function() { selMode = m.id; buildHome(); };
+      ml.appendChild(b);
+    })(MODES[j]);
+  }
+}
+
+/* ── SESSION ── */
+function getPool() {
+  if (selCat === "sve") return DATA;
+  return DATA.filter(function(p) { return p.c === selCat; });
+}
+
+function shuffle(a) {
+  var b = a.slice();
+  for (var i = b.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = b[i]; b[i] = b[j]; b[j] = tmp;
+  }
+  return b;
+}
+
+function startSession() {
+  synth.cancel();
+  initVoices();
+  var pool = shuffle(getPool());
+  var n = Math.min(parseInt(document.getElementById("qcount").value), pool.length);
+  sess = { phrases: pool.slice(0, n), idx: 0, correct: 0, total: n };
+  show("pg-ex");
+  renderQ();
+}
+
+function pickMode() {
+  return selMode === 3 ? Math.floor(Math.random() * 3) : selMode;
+}
+
+/* ── RENDER QUESTION ── */
+function renderQ() {
+  curP = sess.phrases[sess.idx];
+  answered = false;
+  bAns = [];
+  bWords = [];
+
+  var pct = Math.round(sess.idx / sess.total * 100);
+  document.getElementById("pf").style.width = pct + "%";
+  document.getElementById("qc").textContent = (sess.idx + 1) + " / " + sess.total;
+
+  var mode = pickMode();
+  var el = document.getElementById("excontent");
+
+  if (mode === 0) renderType(el);
+  else if (mode === 1) renderMC(el);
+  else renderBuilder(el);
+}
+
+function audioZoneHTML() {
+  return "<div class='azone'>" +
+    "<button class='pbig' id='pbig' onclick='speak(curP.d, 1.0)'>&#9654;</button>" +
+    "<div class='pbtns'>" +
+      "<button class='pbtn' onclick='speak(curP.d, 1.0)'>&#9654; normalno</button>" +
+      "<button class='pbtn' onclick='speak(curP.d, 0.6)'>&#9654; sporo</button>" +
+    "</div>" +
+    "<div class='ahint'>klikni &#9654; za slusanje &middot; sporo = 0.6&times; brzina</div>" +
+  "</div>";
+}
+
+/* TYPE */
+function renderType(el) {
+  el.innerHTML = "<div class='ecard'>" +
+    "<div class='etype'>&#9312; utipkaj sto cujes</div>" +
+    "<div class='cpill'>" + curP.c + "</div>" +
+    audioZoneHTML() +
+    "<div style='font-size:10px;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:7px'>utipkaj na nizozemskom:</div>" +
+    "<input class='tinp' id='tinp' type='text' placeholder='...' autocomplete='off' autocorrect='off' autocapitalize='off' spellcheck='false'>" +
+    "<div id='fb'></div>" +
+    "<div class='arow' id='arow'><button class='btn' onclick='checkType()'>Provjeri</button></div>" +
+  "</div>";
+
+  var inp = document.getElementById("tinp");
+  if (inp) {
+    inp.focus();
+    inp.onkeydown = function(e) { if (e.key === "Enter") checkType(); };
+  }
+}
+
+function norm(s) {
+  return s.toLowerCase().trim().replace(/[?.!,'"]/g, "").replace(/\s+/g, " ");
+}
+
+function checkType() {
+  if (answered) return;
+  var inp = document.getElementById("tinp");
+  var val = inp ? inp.value.trim() : "";
+  if (!val) return;
+  var ok = norm(val) === norm(curP.d);
+  answered = true;
+  inp.classList.add(ok ? "ok" : "bad");
+  inp.disabled = true;
+  sess.correct += ok ? 1 : 0;
+  showFB(ok);
+}
+
+/* MC */
+function renderMC(el) {
+  var others = shuffle(DATA.filter(function(x) { return x.id !== curP.id; })).slice(0, 3);
+  var opts = shuffle([curP].concat(others));
+
+  var optsHTML = "";
+  for (var i = 0; i < opts.length; i++) {
+    optsHTML += "<button class='mco' id='mco" + i + "' data-id='" + opts[i].id + "' onclick='checkMC(" + i + ")'>" + opts[i].e + "</button>";
+  }
+
+  el.innerHTML = "<div class='ecard'>" +
+    "<div class='etype'>&#9313; audio &rarr; znacenje</div>" +
+    "<div class='cpill'>" + curP.c + "</div>" +
+    audioZoneHTML() +
+    "<div style='font-size:10px;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:9px'>odaberi tocan prijevod:</div>" +
+    "<div class='mcg'>" + optsHTML + "</div>" +
+    "<div id='fb'></div>" +
+    "<div class='arow' id='arow'></div>" +
+  "</div>";
+
+  window._mcOpts = opts;
+}
+
+function checkMC(idx) {
+  if (answered) return;
+  answered = true;
+  var opts = window._mcOpts;
+  var chosen = opts[idx];
+  var ok = chosen.id === curP.id;
+  sess.correct += ok ? 1 : 0;
+
+  var btns = document.querySelectorAll(".mco");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].disabled = true;
+    if (opts[i].id === curP.id) btns[i].classList.add("ok");
+    else if (i === idx && !ok) btns[i].classList.add("bad");
+  }
+  showFB(ok);
+}
+
+/* BUILDER */
+function renderBuilder(el) {
+  var words = curP.d.split(" ");
+  bWords = shuffle(words.map(function(w, i) { return {w: w, oi: i}; }));
+
+  var bankHTML = "";
+  for (var i = 0; i < bWords.length; i++) {
+    bankHTML += "<button class='chip' id='bc" + i + "' onclick='bAdd(" + i + ")'>" + bWords[i].w + "</button>";
+  }
+
+  el.innerHTML = "<div class='ecard'>" +
+    "<div class='etype'>&#9314; slozi recenicu</div>" +
+    "<div class='cpill'>" + curP.c + "</div>" +
+    "<div class='eprompt'>" + curP.e + "</div>" +
+    "<div class='blbl'>tvoj odgovor:</div>" +
+    "<div class='barea' id='barea'></div>" +
+    "<div class='blbl'>rijeci:</div>" +
+    "<div class='cbank' id='cbank'>" + bankHTML + "</div>" +
+    "<div id='fb'></div>" +
+    "<div class='arow' id='arow'>" +
+      "<button class='btn' onclick='checkBuilder()'>Provjeri</button>" +
+      "<button class='btn gbtn sbtn' onclick='bClear()'>Obrisi</button>" +
+    "</div>" +
+  "</div>";
+}
+
+function bAdd(i) {
+  if (answered) return;
+  var chip = document.getElementById("bc" + i);
+  if (!chip || chip.classList.contains("used")) return;
+  chip.classList.add("used");
+  bAns.push(i);
+  bRender();
+}
+
+function bRemove(i) {
+  if (answered) return;
+  bAns = bAns.filter(function(x) { return x !== i; });
+  var bc = document.getElementById("bc" + i);
+  if (bc) bc.classList.remove("used");
+  bRender();
+}
+
+function bClear() {
+  if (answered) return;
+  bAns = [];
+  var chips = document.querySelectorAll(".cbank .chip");
+  for (var i = 0; i < chips.length; i++) chips[i].classList.remove("used");
+  bRender();
+}
+
+function bRender() {
+  var area = document.getElementById("barea");
+  if (!area) return;
+  var html = "";
+  for (var i = 0; i < bAns.length; i++) {
+    html += "<button class='chip used' onclick='bRemove(" + bAns[i] + ")'>" + bWords[bAns[i]].w + "</button>";
+  }
+  area.innerHTML = html;
+}
+
+function checkBuilder() {
+  if (answered || !bAns.length) return;
+  var attempt = bAns.map(function(i) { return bWords[i].w; }).join(" ");
+  var ok = norm(attempt) === norm(curP.d);
+  answered = true;
+  speak(curP.d, 1.0);
+
+  var chips = document.querySelectorAll("#barea .chip");
+  for (var i = 0; i < chips.length; i++) {
+    chips[i].classList.remove("used");
+    chips[i].classList.add(ok ? "cok" : "cbad");
+  }
+  sess.correct += ok ? 1 : 0;
+  showFB(ok);
+}
+
+/* FEEDBACK */
+function showFB(ok) {
+  var fb = document.getElementById("fb");
+  if (ok) {
+    fb.innerHTML = "<div class='fb ok'>&#10003; Tocno!</div>";
+  } else {
+    fb.innerHTML = "<div class='fb bad'>&#10007; Netocno. Tocan odgovor:<div class='rev'>" + curP.d + "</div></div>";
+  }
+
+  var ar = document.getElementById("arow");
+  ar.innerHTML = "";
+  var nx = document.createElement("button");
+  nx.className = "btn";
+  nx.textContent = (sess.idx + 1 < sess.total) ? "Sljedece →" : "Zavrsi →";
+  nx.onclick = nextQ;
+  ar.appendChild(nx);
+}
+
+function nextQ() {
+  sess.idx++;
+  if (sess.idx >= sess.total) { showEnd(); return; }
+  renderQ();
+}
+
+/* END */
+function showEnd() {
+  var pct = Math.round(sess.correct / sess.total * 100);
+  document.getElementById("escore").textContent = pct + "%";
+  var msg = pct >= 90 ? "Sjajno! Pravi Nederlandac." :
+            pct >= 70 ? "Vrlo dobro! Nastavi ovako." :
+            pct >= 50 ? "Dobar pocetak! Vjezˇbaj dalje." :
+                        "Ne brini, ponovi i bit ce bolje!";
+  document.getElementById("emsg").textContent = msg;
+  document.getElementById("ebk").innerHTML =
+    "<div class='bki'><div class='bkv'>" + sess.correct + "</div><div class='bkl'>tocnih</div></div>" +
+    "<div class='bki'><div class='bkv'>" + (sess.total - sess.correct) + "</div><div class='bkl'>netocnih</div></div>" +
+    "<div class='bki'><div class='bkv'>" + sess.total + "</div><div class='bkl'>ukupno</div></div>";
+  show("pg-end");
+}
+
+buildHome();
+</script>
+</body>
+</html>
