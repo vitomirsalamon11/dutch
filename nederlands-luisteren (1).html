@@ -25,7 +25,7 @@ body{background:var(--bg);color:var(--t1);font-family:'DM Mono',monospace;font-s
 .logo em{color:var(--t3);font-weight:300;font-style:italic}
 .sub{color:var(--t2);font-size:12px;margin-bottom:2rem}
 .lbl{font-size:10px;color:var(--t3);letter-spacing:2.5px;text-transform:uppercase;margin:1.5rem 0 .75rem}
-.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:8px}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
 .ccard{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);padding:1rem;cursor:pointer;transition:.15s}
 .ccard:hover{border-color:var(--ac2);background:var(--s2)}
 .ccard.on{border-color:var(--ac);background:var(--ac3)}
@@ -111,6 +111,19 @@ select{background:var(--s2);border:1px solid var(--b2);border-radius:var(--rs);p
 .bkv{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:300}
 .bkl{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;margin-top:3px}
 .ebtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+@media(max-width:500px){
+  .page{padding:1.2rem 1rem}
+  .logo{font-size:1.8rem}
+  .mcg{grid-template-columns:1fr}
+  .cgrid{grid-template-columns:repeat(2,1fr)}
+  .lvl-row{flex-direction:column}
+  .srow{flex-direction:column;align-items:stretch}
+  .srow .btn{width:100%}
+  select{width:100%}
+  .eng-word{font-size:1.8rem}
+  .tinp,.vocab-inp{font-size:1rem}
+  .pbtns{flex-wrap:wrap}
+}
 </style>
 </head>
 <body>
@@ -742,21 +755,21 @@ var VOCAB = [
 
 var CATS = [
   {id:"sve",label:"All",icon:"NL",desc:"All sentences"},
-  {id:"Greetings",label:"Greetings",icon:"👋",desc:"Greetings and basics"},
-  {id:"Food",label:"Food",icon:"🍽",desc:"Eating and drinking"},
-  {id:"Directions",label:"Directions",icon:"🚆",desc:"Transport and navigation"},
-  {id:"Daily Life",label:"Daily Life",icon:"🏠",desc:"Everyday situations"},
-  {id:"Conversation",label:"Conversation",icon:"💬",desc:"Small talk and introductions"},
-  {id:"Hotel",label:"Hotel",icon:"🏨",desc:"Accommodation"},
-  {id:"Shopping",label:"Shopping",icon:"🛍",desc:"Shops and buying"},
-  {id:"Work",label:"Work",icon:"💼",desc:"Office and jobs (A2)"},
-  {id:"Health",label:"Health",icon:"🏥",desc:"Illness and doctors (A2)"},
-  {id:"Family",label:"Family",icon:"👨‍👩‍👧",desc:"Family life (A2)"},
-  {id:"Free Time",label:"Free Time",icon:"🎸",desc:"Hobbies and leisure (A2)"},
-  {id:"Numbers",label:"Numbers",icon:"🔢",desc:"Numbers and time"},
-  {id:"Weather",label:"Weather",icon:"🌦",desc:"Weather (A2)"},
-  {id:"School",label:"School",icon:"📚",desc:"School and studying (A2)"},
-  {id:"Housing",label:"Housing",icon:"🏡",desc:"Apartments and renting (A2)"}
+  {id:"Greetings",label:"Greetings",icon:"hi",desc:"Greetings and basics"},
+  {id:"Food",label:"Food",icon:"eat",desc:"Eating and drinking"},
+  {id:"Directions",label:"Directions",icon:"map",desc:"Transport and navigation"},
+  {id:"Daily Life",label:"Daily Life",icon:"home",desc:"Everyday situations"},
+  {id:"Conversation",label:"Conversation",icon:"chat",desc:"Small talk and introductions"},
+  {id:"Hotel",label:"Hotel",icon:"bed",desc:"Accommodation"},
+  {id:"Shopping",label:"Shopping",icon:"bag",desc:"Shops and buying"},
+  {id:"Work",label:"Work",icon:"work",desc:"Office and jobs (A2)"},
+  {id:"Health",label:"Health",icon:"med",desc:"Illness and doctors (A2)"},
+  {id:"Family",label:"Family",icon:"fam",desc:"Family life (A2)"},
+  {id:"Free Time",label:"Free Time",icon:"fun",desc:"Hobbies and leisure (A2)"},
+  {id:"Numbers",label:"Numbers",icon:"123",desc:"Numbers and time"},
+  {id:"Weather",label:"Weather",icon:"sun",desc:"Weather (A2)"},
+  {id:"School",label:"School",icon:"edu",desc:"School and studying (A2)"},
+  {id:"Housing",label:"Housing",icon:"apt",desc:"Apartments and renting (A2)"}
 ];
 
 var MODES = [
