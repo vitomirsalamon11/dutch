@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="hr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nederlands Luisteren</title>
+<title>Dutch Listening Practice</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -12,340 +12,772 @@
   --b1:#2e2e2e;--b2:#3a3a3a;
   --t1:#f0ede8;--t2:#9a9088;--t3:#554e48;
   --ac:#e8b86d;--ac2:#c4924a;--ac3:#2e2010;
+  --a1c:#5a82c4;--a1bg:#0d1520;
+  --a2c:#c45a9e;--a2bg:#200d18;
   --gn:#5a9e6f;--gnb:#0a1e12;--gnt:#7dd4a0;
   --rd:#c45a5a;--rdb:#1e0a0a;--rdt:#f4a0a0;
   --r:14px;--rs:9px;
 }
 body{background:var(--bg);color:var(--t1);font-family:'DM Mono',monospace;font-size:15px;min-height:100vh}
-.page{display:none;min-height:100vh;padding:2rem 1.5rem;max-width:700px;margin:0 auto;flex-direction:column}
+.page{display:none;min-height:100vh;padding:2rem 1.5rem;max-width:740px;margin:0 auto;flex-direction:column}
 .page.on{display:flex}
-/* home */
-.logo{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:600;color:var(--ac);letter-spacing:-1px;line-height:1;margin-bottom:6px}
+.logo{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:600;color:var(--ac);letter-spacing:-1px;line-height:1;margin-bottom:6px}
 .logo em{color:var(--t3);font-weight:300;font-style:italic}
-.sub{color:var(--t2);font-size:12px}
-.lbl{font-size:10px;color:var(--t3);letter-spacing:2.5px;text-transform:uppercase;margin:1.8rem 0 .75rem}
-.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:10px}
-.ccard{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);padding:1.1rem;cursor:pointer;transition:.15s}
+.sub{color:var(--t2);font-size:12px;margin-bottom:2rem}
+.lbl{font-size:10px;color:var(--t3);letter-spacing:2.5px;text-transform:uppercase;margin:1.5rem 0 .75rem}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:8px}
+.ccard{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);padding:1rem;cursor:pointer;transition:.15s}
 .ccard:hover{border-color:var(--ac2);background:var(--s2)}
 .ccard.on{border-color:var(--ac);background:var(--ac3)}
-.ccard .ic{font-size:1.4rem;display:block;margin-bottom:7px}
-.ccard h3{font-family:'Fraunces',serif;font-weight:300;font-size:.95rem;margin-bottom:3px}
-.ccard p{font-size:10.5px;color:var(--t2);line-height:1.5}
-.mlist{display:flex;flex-direction:column;gap:8px}
-.mbtn{background:var(--s1);border:1px solid var(--b1);border-radius:var(--rs);padding:.9rem 1.1rem;cursor:pointer;text-align:left;transition:.15s;display:flex;align-items:flex-start;gap:11px}
+.ccard .ic{font-size:1.3rem;display:block;margin-bottom:6px}
+.ccard h3{font-family:'Fraunces',serif;font-weight:300;font-size:.9rem;margin-bottom:3px}
+.ccard p{font-size:10px;color:var(--t2);line-height:1.5}
+.lvl-row{display:flex;gap:8px;margin-bottom:4px}
+.lvl-btn{flex:1;background:var(--s1);border:1px solid var(--b1);border-radius:var(--rs);padding:.65rem;cursor:pointer;transition:.15s;text-align:center;font-family:'DM Mono',monospace;font-size:12px;color:var(--t2)}
+.lvl-btn:hover{border-color:var(--ac2)}
+.lvl-btn.on{border-color:var(--ac);background:var(--ac3);color:var(--ac)}
+.lvl-badge{display:inline-block;font-size:9px;padding:2px 6px;border-radius:4px;margin-right:5px;font-weight:500;vertical-align:middle}
+.a1{background:var(--a1bg);color:var(--a1c);border:1px solid var(--a1c)}
+.a2{background:var(--a2bg);color:var(--a2c);border:1px solid var(--a2c)}
+.mlist{display:flex;flex-direction:column;gap:7px}
+.mbtn{background:var(--s1);border:1px solid var(--b1);border-radius:var(--rs);padding:.85rem 1rem;cursor:pointer;text-align:left;transition:.15s;display:flex;align-items:flex-start;gap:10px}
 .mbtn:hover{border-color:var(--ac2);background:var(--s2)}
 .mbtn.on{border-color:var(--ac);background:var(--ac3)}
-.mnum{font-family:'Fraunces',serif;font-size:1.4rem;color:var(--ac);min-width:26px;line-height:1}
+.mnum{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--ac);min-width:24px;line-height:1}
 .mtit{font-size:13px;font-weight:500;margin-bottom:2px}
 .mdsc{font-size:11px;color:var(--t2);line-height:1.5}
-.srow{display:flex;gap:10px;align-items:flex-end;margin-top:1.5rem}
-.srow label{font-size:10px;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;display:block;margin-bottom:6px}
-select{background:var(--s2);border:1px solid var(--b2);border-radius:var(--rs);padding:.55rem .9rem;color:var(--t1);font-family:'DM Mono',monospace;font-size:12px;outline:none;cursor:pointer}
+.srow{display:flex;gap:10px;align-items:flex-end;margin-top:1.5rem;flex-wrap:wrap}
+.srow label{font-size:10px;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;display:block;margin-bottom:5px}
+select{background:var(--s2);border:1px solid var(--b2);border-radius:var(--rs);padding:.5rem .85rem;color:var(--t1);font-family:'DM Mono',monospace;font-size:12px;outline:none;cursor:pointer}
 .btn{display:inline-flex;align-items:center;justify-content:center;background:var(--ac);color:#160e00;border:none;border-radius:var(--rs);padding:.7rem 1.4rem;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;cursor:pointer;transition:.15s;white-space:nowrap}
 .btn:hover{background:var(--ac2)}
 .gbtn{background:transparent;color:var(--t2);border:1px solid var(--b2)}
 .gbtn:hover{background:var(--s2);color:var(--t1)}
 .sbtn{padding:.45rem .9rem;font-size:12px}
-/* exercise */
-.tbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.4rem}
+.tbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem}
 .back{background:none;border:none;color:var(--t3);cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;padding:4px 0;transition:.15s}
 .back:hover{color:var(--t2)}
 .qc{font-size:11px;color:var(--t3)}
 .pw{background:var(--s2);border-radius:4px;height:3px;margin-bottom:1.5rem;overflow:hidden}
 .pf{background:var(--ac);height:3px;border-radius:4px;transition:width .45s}
 .ecard{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);padding:1.5rem}
-.etype{font-size:10px;color:var(--ac2);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
-.cpill{display:inline-block;font-size:9.5px;color:var(--t3);letter-spacing:1px;text-transform:uppercase;border:1px solid var(--b2);border-radius:5px;padding:2px 8px;margin-bottom:14px}
-/* audio */
-.azone{background:var(--s2);border-radius:var(--rs);padding:1.3rem 1.1rem 1rem;margin-bottom:1.3rem;display:flex;flex-direction:column;align-items:center;gap:10px}
-.pbig{width:62px;height:62px;border-radius:50%;background:var(--ac);color:#160e00;border:none;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;transition:.15s}
+.etype{font-size:10px;color:var(--ac2);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.cpill{display:inline-block;font-size:9px;color:var(--t3);letter-spacing:1px;text-transform:uppercase;border:1px solid var(--b2);border-radius:5px;padding:2px 7px;margin-bottom:12px;margin-right:4px}
+.azone{background:var(--s2);border-radius:var(--rs);padding:1.2rem 1rem .9rem;margin-bottom:1.2rem;display:flex;flex-direction:column;align-items:center;gap:9px}
+.pbig{width:60px;height:60px;border-radius:50%;background:var(--ac);color:#160e00;border:none;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;transition:.15s}
 .pbig:hover{background:var(--ac2);transform:scale(1.06)}
-.pbig.spin{animation:pulse .9s infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
 .pbtns{display:flex;gap:8px}
-.pbtn{background:var(--s3);border:1px solid var(--b2);border-radius:var(--rs);padding:.45rem .9rem;color:var(--t2);font-family:'DM Mono',monospace;font-size:11px;cursor:pointer;transition:.15s}
+.pbtn{background:var(--s3);border:1px solid var(--b2);border-radius:var(--rs);padding:.4rem .85rem;color:var(--t2);font-family:'DM Mono',monospace;font-size:11px;cursor:pointer;transition:.15s}
 .pbtn:hover{border-color:var(--ac2);color:var(--ac)}
-.ahint{font-size:10.5px;color:var(--t3)}
-/* type */
-.tinp{width:100%;background:var(--s2);border:1.5px solid var(--b2);border-radius:var(--rs);padding:.85rem 1rem;color:var(--t1);font-family:'Fraunces',serif;font-size:1.25rem;font-weight:300;outline:none;transition:.15s;margin-bottom:1rem;caret-color:var(--ac)}
+.ahint{font-size:10px;color:var(--t3)}
+.tinp{width:100%;background:var(--s2);border:1.5px solid var(--b2);border-radius:var(--rs);padding:.8rem 1rem;color:var(--t1);font-family:'Fraunces',serif;font-size:1.2rem;font-weight:300;outline:none;transition:.15s;margin-bottom:1rem;caret-color:var(--ac)}
 .tinp::placeholder{color:var(--t3);font-style:italic}
 .tinp:focus{border-color:var(--ac2)}
 .tinp.ok{border-color:var(--gn);background:var(--gnb)}
 .tinp.bad{border-color:var(--rd);background:var(--rdb)}
-/* mc */
 .mcg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1rem}
-.mco{background:var(--s2);border:1px solid var(--b2);border-radius:var(--rs);padding:.85rem 1rem;cursor:pointer;font-size:12.5px;color:var(--t1);transition:.15s;text-align:left;font-family:'DM Mono',monospace;line-height:1.45}
+.mco{background:var(--s2);border:1px solid var(--b2);border-radius:var(--rs);padding:.8rem .9rem;cursor:pointer;font-size:12px;color:var(--t1);transition:.15s;text-align:left;font-family:'DM Mono',monospace;line-height:1.45}
 .mco:hover:not(:disabled){border-color:var(--ac2);background:var(--s3)}
 .mco:disabled{cursor:default}
 .mco.ok{border-color:var(--gn)!important;background:var(--gnb)!important;color:var(--gnt)}
 .mco.bad{border-color:var(--rd)!important;background:var(--rdb)!important;color:var(--rdt)}
-/* builder */
-.eprompt{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:300;color:var(--t1);line-height:1.55;margin-bottom:1.2rem;padding:.9rem 1rem;background:var(--s2);border-radius:var(--rs);border-left:3px solid var(--ac)}
-.blbl{font-size:10px;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
-.barea{min-height:58px;border:1px dashed var(--b2);border-radius:var(--rs);padding:9px 10px;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;background:var(--s2);align-content:flex-start}
-.cbank{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
-.chip{background:var(--s3);border:1px solid var(--b2);border-radius:6px;padding:5px 11px;cursor:pointer;font-family:'Fraunces',serif;font-size:.95rem;font-weight:300;color:var(--t1);transition:.1s;user-select:none}
+.eprompt{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:300;color:var(--t1);line-height:1.55;margin-bottom:1.1rem;padding:.85rem 1rem;background:var(--s2);border-radius:var(--rs);border-left:3px solid var(--ac)}
+.blbl{font-size:10px;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px}
+.barea{min-height:54px;border:1px dashed var(--b2);border-radius:var(--rs);padding:8px 9px;display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px;background:var(--s2);align-content:flex-start}
+.cbank{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:1rem}
+.chip{background:var(--s3);border:1px solid var(--b2);border-radius:6px;padding:4px 10px;cursor:pointer;font-family:'Fraunces',serif;font-size:.9rem;font-weight:300;color:var(--t1);transition:.1s;user-select:none}
 .chip:hover{border-color:var(--ac);color:var(--ac)}
 .chip.used{background:var(--ac3);border-color:var(--ac2);color:var(--ac)}
 .chip.cok{background:var(--gnb);border-color:var(--gn);color:var(--gnt);cursor:default}
 .chip.cbad{background:var(--rdb);border-color:var(--rd);color:var(--rdt);cursor:default}
-/* feedback */
-.fb{border-radius:var(--rs);padding:.85rem 1rem;margin-bottom:1rem;font-size:13px;line-height:1.55}
+.fb{border-radius:var(--rs);padding:.8rem 1rem;margin-bottom:1rem;font-size:13px;line-height:1.55}
 .fb.ok{background:var(--gnb);border:1px solid var(--gn);color:var(--gnt)}
 .fb.bad{background:var(--rdb);border:1px solid var(--rd);color:var(--rdt)}
-.fb .rev{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:300;margin-top:6px;color:var(--t1)}
+.fb .rev{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:300;margin-top:5px;color:var(--t1)}
 .arow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-/* end */
-.ewrap{display:flex;flex-direction:column;align-items:center;padding:2.5rem 0;gap:8px}
-.escore{font-family:'Fraunces',serif;font-size:5rem;font-weight:600;color:var(--ac);line-height:1}
+.vocab-card{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);padding:2rem 1.5rem;text-align:center}
+.eng-word{font-family:'Fraunces',serif;font-size:2.5rem;font-weight:300;color:var(--t1);margin-bottom:.4rem;line-height:1.2}
+.eng-ctx{font-size:12px;color:var(--t3);margin-bottom:1.5rem;font-style:italic}
+.vocab-inp{width:100%;background:var(--s2);border:1.5px solid var(--b2);border-radius:var(--rs);padding:.8rem 1rem;color:var(--t1);font-family:'Fraunces',serif;font-size:1.3rem;font-weight:300;outline:none;transition:.15s;text-align:center;caret-color:var(--ac);margin-bottom:1rem}
+.vocab-inp::placeholder{color:var(--t3);font-style:italic}
+.vocab-inp:focus{border-color:var(--ac2)}
+.vocab-inp.ok{border-color:var(--gn);background:var(--gnb)}
+.vocab-inp.bad{border-color:var(--rd);background:var(--rdb)}
+.ewrap{display:flex;flex-direction:column;align-items:center;padding:2rem 0;gap:8px}
+.escore{font-family:'Fraunces',serif;font-size:4.5rem;font-weight:600;color:var(--ac);line-height:1}
 .emsg{color:var(--t2);font-size:12px}
-.ebk{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:1.5rem 0;width:100%;max-width:340px}
-.bki{background:var(--s2);border-radius:var(--rs);padding:.9rem;text-align:center}
-.bkv{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:300}
-.bkl{font-size:9.5px;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px}
+.ebk{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:1.2rem 0;width:100%;max-width:320px}
+.bki{background:var(--s2);border-radius:var(--rs);padding:.85rem;text-align:center}
+.bkv{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:300}
+.bkl{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;margin-top:3px}
 .ebtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
 </style>
 </head>
 <body>
-
 <div id="pg-home" class="page on">
-  <div style="margin-bottom:2rem">
-    <div class="logo">Nederlands<em>luisteren</em></div>
-    <div class="sub">vježbaj slušanje i vokabular — 160 rečenica za početnike</div>
+  <div>
+    <div class="logo">Dutch<em>practice</em></div>
+    <div class="sub">1000+ sentences · A1 &amp; A2 levels · listening and vocabulary</div>
   </div>
-  <div class="lbl">kategorija</div>
+  <div class="lbl">level</div>
+  <div class="lvl-row">
+    <button class="lvl-btn on" id="lvl-sve" onclick="selLvl('sve')">All levels</button>
+    <button class="lvl-btn" id="lvl-A1" onclick="selLvl('A1')"><span class="lvl-badge a1">A1</span>Beginner</button>
+    <button class="lvl-btn" id="lvl-A2" onclick="selLvl('A2')"><span class="lvl-badge a2">A2</span>Elementary</button>
+  </div>
+  <div class="lbl">category</div>
   <div class="cgrid" id="cgrid"></div>
-  <div class="lbl">vrsta vježbe</div>
+  <div class="lbl">exercise type</div>
   <div class="mlist" id="mlist"></div>
   <div class="srow">
     <div>
-      <label>broj pitanja</label>
+      <label>questions per session</label>
       <select id="qcount">
-        <option value="10">10 pitanja</option>
-        <option value="15">15 pitanja</option>
-        <option value="20" selected>20 pitanja</option>
-        <option value="30">30 pitanja</option>
-        <option value="50">50 pitanja</option>
+        <option value="10">10</option>
+        <option value="20" selected>20</option>
+        <option value="30">30</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
       </select>
     </div>
-    <button class="btn" onclick="startSession()">Pocni &rarr;</button>
-    <button class="btn gbtn sbtn" onclick="debugTTS()" style="margin-left:4px">&#9654; test zvuk</button>
+    <button class="btn" onclick="startSession()">Start &rarr;</button>
   </div>
 </div>
-
 <div id="pg-ex" class="page">
   <div class="tbar">
-    <button class="back" onclick="goHome()">← natrag</button>
+    <button class="back" onclick="goHome()">&#8592; back</button>
     <div class="qc" id="qc">1 / 20</div>
   </div>
   <div class="pw"><div class="pf" id="pf" style="width:0%"></div></div>
   <div id="excontent"></div>
 </div>
-
 <div id="pg-end" class="page">
   <div class="ewrap">
-    <div style="font-size:11px;color:var(--t3);letter-spacing:2.5px;text-transform:uppercase">sesija završena</div>
+    <div style="font-size:11px;color:var(--t3);letter-spacing:2px;text-transform:uppercase">session complete</div>
     <div class="escore" id="escore">0%</div>
     <div class="emsg" id="emsg"></div>
     <div class="ebk" id="ebk"></div>
     <div class="ebtns">
-      <button class="btn" onclick="startSession()">Ponovi</button>
-      <button class="btn gbtn" onclick="goHome()">Postavke</button>
+      <button class="btn" onclick="startSession()">Repeat</button>
+      <button class="btn gbtn" onclick="goHome()">Settings</button>
     </div>
   </div>
 </div>
-
 <script>
 var DATA = [
-  {id:"e01",d:"Hallo, hoe gaat het?",e:"Hello, how are you?",c:"Pozdrav"},
-  {id:"e02",d:"Goedemorgen!",e:"Good morning!",c:"Pozdrav"},
-  {id:"e03",d:"Goedemiddag.",e:"Good afternoon.",c:"Pozdrav"},
-  {id:"e04",d:"Goedenavond.",e:"Good evening.",c:"Pozdrav"},
-  {id:"e05",d:"Goedenacht.",e:"Good night.",c:"Pozdrav"},
-  {id:"e06",d:"Tot ziens.",e:"Goodbye.",c:"Pozdrav"},
-  {id:"e07",d:"Tot morgen.",e:"See you tomorrow.",c:"Pozdrav"},
-  {id:"e08",d:"Tot later.",e:"See you later.",c:"Pozdrav"},
-  {id:"e09",d:"Dank je wel.",e:"Thank you.",c:"Pozdrav"},
-  {id:"e10",d:"Heel erg bedankt.",e:"Thank you very much.",c:"Pozdrav"},
-  {id:"e11",d:"Alstublieft.",e:"Here you go.",c:"Pozdrav"},
-  {id:"e12",d:"Graag gedaan.",e:"You are welcome.",c:"Pozdrav"},
-  {id:"e13",d:"Sorry.",e:"Sorry.",c:"Pozdrav"},
-  {id:"e14",d:"Geen probleem.",e:"No problem.",c:"Pozdrav"},
-  {id:"e15",d:"Ik begrijp het niet.",e:"I do not understand.",c:"Pozdrav"},
-  {id:"e16",d:"Kunt u dat herhalen?",e:"Can you repeat that?",c:"Pozdrav"},
-  {id:"e17",d:"Spreekt u Engels?",e:"Do you speak English?",c:"Pozdrav"},
-  {id:"e18",d:"Ik spreek een beetje Nederlands.",e:"I speak a little Dutch.",c:"Pozdrav"},
-  {id:"e19",d:"Hoe heet je?",e:"What is your name?",c:"Pozdrav"},
-  {id:"e20",d:"Mijn naam is Ana.",e:"My name is Ana.",c:"Pozdrav"},
-  {id:"e21",d:"Aangenaam kennis te maken.",e:"Nice to meet you.",c:"Pozdrav"},
-  {id:"e22",d:"Hoe oud ben je?",e:"How old are you?",c:"Pozdrav"},
-  {id:"e23",d:"Waar kom je vandaan?",e:"Where are you from?",c:"Pozdrav"},
-  {id:"e24",d:"Ik kom uit Kroatie.",e:"I come from Croatia.",c:"Pozdrav"},
-  {id:"e25",d:"Ja, natuurlijk.",e:"Yes, of course.",c:"Pozdrav"},
-  {id:"e26",d:"Nee, dank je.",e:"No, thank you.",c:"Pozdrav"},
-  {id:"e27",d:"Een moment, alstublieft.",e:"One moment please.",c:"Pozdrav"},
-  {id:"e28",d:"Ik weet het niet.",e:"I do not know.",c:"Pozdrav"},
-  {id:"e29",d:"Dat klopt.",e:"That is correct.",c:"Pozdrav"},
-  {id:"e30",d:"Dat is niet waar.",e:"That is not true.",c:"Pozdrav"},
-  {id:"d01",d:"Ik wil graag koffie.",e:"I would like coffee.",c:"Hrana"},
-  {id:"d02",d:"Twee bier, alstublieft.",e:"Two beers please.",c:"Hrana"},
-  {id:"d03",d:"Mag ik de menukaart?",e:"May I have the menu?",c:"Hrana"},
-  {id:"d04",d:"Wat wilt u eten?",e:"What would you like to eat?",c:"Hrana"},
-  {id:"d05",d:"Mag ik de rekening?",e:"May I have the bill?",c:"Hrana"},
-  {id:"d06",d:"Het eten is lekker.",e:"The food is tasty.",c:"Hrana"},
-  {id:"d07",d:"Ik heb honger.",e:"I am hungry.",c:"Hrana"},
-  {id:"d08",d:"Ik heb dorst.",e:"I am thirsty.",c:"Hrana"},
-  {id:"d09",d:"Een glas water, alstublieft.",e:"A glass of water please.",c:"Hrana"},
-  {id:"d10",d:"Ik eet een appel.",e:"I am eating an apple.",c:"Hrana"},
-  {id:"d11",d:"Het brood is vers.",e:"The bread is fresh.",c:"Hrana"},
-  {id:"d12",d:"Ik drink thee.",e:"I am drinking tea.",c:"Hrana"},
-  {id:"d13",d:"Heeft u een tafel voor twee?",e:"Do you have a table for two?",c:"Hrana"},
-  {id:"d14",d:"Ik ben allergisch voor noten.",e:"I am allergic to nuts.",c:"Hrana"},
-  {id:"d15",d:"Kan ik zonder vlees bestellen?",e:"Can I order without meat?",c:"Hrana"},
-  {id:"d16",d:"Het is te zout.",e:"It is too salty.",c:"Hrana"},
-  {id:"d17",d:"Ik wil graag een dessert.",e:"I would like a dessert.",c:"Hrana"},
-  {id:"d18",d:"De soep is heet.",e:"The soup is hot.",c:"Hrana"},
-  {id:"d19",d:"Ik houd van kaas.",e:"I love cheese.",c:"Hrana"},
-  {id:"d20",d:"Wat kost dit?",e:"What does this cost?",c:"Hrana"},
-  {id:"d21",d:"Is er een vegetarisch gerecht?",e:"Is there a vegetarian dish?",c:"Hrana"},
-  {id:"d22",d:"Ik neem de dagschotel.",e:"I will take the dish of the day.",c:"Hrana"},
-  {id:"d23",d:"Met of zonder suiker?",e:"With or without sugar?",c:"Hrana"},
-  {id:"d24",d:"De melk is koud.",e:"The milk is cold.",c:"Hrana"},
-  {id:"d25",d:"Ik wil graag de vis.",e:"I would like the fish.",c:"Hrana"},
-  {id:"t01",d:"Waar is het station?",e:"Where is the station?",c:"Smjer"},
-  {id:"t02",d:"Hoe kom ik bij het centrum?",e:"How do I get to the center?",c:"Smjer"},
-  {id:"t03",d:"Ga rechtdoor.",e:"Go straight ahead.",c:"Smjer"},
-  {id:"t04",d:"Sla linksaf.",e:"Turn left.",c:"Smjer"},
-  {id:"t05",d:"Sla rechtsaf.",e:"Turn right.",c:"Smjer"},
-  {id:"t06",d:"Is het ver weg?",e:"Is it far away?",c:"Smjer"},
-  {id:"t07",d:"Hoe ver is het lopen?",e:"How far is it on foot?",c:"Smjer"},
-  {id:"t08",d:"Ik zoek het hotel.",e:"I am looking for the hotel.",c:"Smjer"},
-  {id:"t09",d:"Wanneer vertrekt de trein?",e:"When does the train leave?",c:"Smjer"},
-  {id:"t10",d:"Een kaartje naar Amsterdam.",e:"A ticket to Amsterdam.",c:"Smjer"},
-  {id:"t11",d:"De bus is te laat.",e:"The bus is late.",c:"Smjer"},
-  {id:"t12",d:"Welk perron?",e:"Which platform?",c:"Smjer"},
-  {id:"t13",d:"Ik moet overstappen.",e:"I have to transfer.",c:"Smjer"},
-  {id:"t14",d:"Is dit de goede richting?",e:"Is this the right direction?",c:"Smjer"},
-  {id:"t15",d:"Ik ben verdwaald.",e:"I am lost.",c:"Smjer"},
-  {id:"t16",d:"Hoe laat gaat de bus?",e:"What time does the bus go?",c:"Smjer"},
-  {id:"t17",d:"Mag ik hier instappen?",e:"Can I board here?",c:"Smjer"},
-  {id:"t18",d:"Een retourkaartje, alstublieft.",e:"A return ticket please.",c:"Smjer"},
-  {id:"t19",d:"Waar is de bushalte?",e:"Where is the bus stop?",c:"Smjer"},
-  {id:"t20",d:"Hoe lang duurt de reis?",e:"How long does the journey take?",c:"Smjer"},
-  {id:"t21",d:"Links is het park.",e:"On the left is the park.",c:"Smjer"},
-  {id:"t22",d:"Rechts is het museum.",e:"On the right is the museum.",c:"Smjer"},
-  {id:"t23",d:"De apotheek is verderop.",e:"The pharmacy is further along.",c:"Smjer"},
-  {id:"t24",d:"Is er een taxi standplaats?",e:"Is there a taxi stand?",c:"Smjer"},
-  {id:"t25",d:"Kunt u mij helpen?",e:"Can you help me?",c:"Smjer"},
-  {id:"s01",d:"Ik werk elke dag.",e:"I work every day.",c:"Zivot"},
-  {id:"s02",d:"Ik ga naar de winkel.",e:"I am going to the store.",c:"Zivot"},
-  {id:"s03",d:"Het is mooi weer vandaag.",e:"The weather is nice today.",c:"Zivot"},
-  {id:"s04",d:"Het regent buiten.",e:"It is raining outside.",c:"Zivot"},
-  {id:"s05",d:"Ik sta om zeven uur op.",e:"I get up at seven o clock.",c:"Zivot"},
-  {id:"s06",d:"Ik ga vroeg slapen.",e:"I go to sleep early.",c:"Zivot"},
-  {id:"s07",d:"Het is koud vandaag.",e:"It is cold today.",c:"Zivot"},
-  {id:"s08",d:"De winkel is dicht.",e:"The shop is closed.",c:"Zivot"},
-  {id:"s09",d:"Hoeveel kost dat?",e:"How much does that cost?",c:"Zivot"},
-  {id:"s10",d:"Ik betaal met pinpas.",e:"I pay by debit card.",c:"Zivot"},
-  {id:"s11",d:"Heeft u een zak?",e:"Do you have a bag?",c:"Zivot"},
-  {id:"s12",d:"De supermarkt is dichtbij.",e:"The supermarket is nearby.",c:"Zivot"},
-  {id:"s13",d:"Ik heb dit nodig.",e:"I need this.",c:"Zivot"},
-  {id:"s14",d:"Kan ik u helpen?",e:"Can I help you?",c:"Zivot"},
-  {id:"s15",d:"Ik zoek iets voor mijn kind.",e:"I am looking for something for my child.",c:"Zivot"},
-  {id:"s16",d:"Is er een apotheek hier?",e:"Is there a pharmacy here?",c:"Zivot"},
-  {id:"s17",d:"Het postkantoor is links.",e:"The post office is on the left.",c:"Zivot"},
-  {id:"s18",d:"Ik bel u morgen.",e:"I will call you tomorrow.",c:"Zivot"},
-  {id:"s19",d:"Mijn telefoon is leeg.",e:"My phone is dead.",c:"Zivot"},
-  {id:"s20",d:"Heeft u wifi hier?",e:"Do you have wifi here?",c:"Zivot"},
-  {id:"s21",d:"Ik ben moe.",e:"I am tired.",c:"Zivot"},
-  {id:"s22",d:"Ik voel me ziek.",e:"I feel sick.",c:"Zivot"},
-  {id:"s23",d:"Ik heb hoofdpijn.",e:"I have a headache.",c:"Zivot"},
-  {id:"s24",d:"De dokter is vrij.",e:"The doctor is available.",c:"Zivot"},
-  {id:"s25",d:"Ik heb een afspraak.",e:"I have an appointment.",c:"Zivot"},
-  {id:"s26",d:"Hoe laat is het?",e:"What time is it?",c:"Zivot"},
-  {id:"s27",d:"Het is tien uur.",e:"It is ten o clock.",c:"Zivot"},
-  {id:"s28",d:"De vergadering begint om negen.",e:"The meeting starts at nine.",c:"Zivot"},
-  {id:"s29",d:"Ik werk vanuit huis.",e:"I work from home.",c:"Zivot"},
-  {id:"s30",d:"Vandaag is het vrijdag.",e:"Today is Friday.",c:"Zivot"},
-  {id:"n01",d:"Ik heet Peter.",e:"My name is Peter.",c:"Razgovor"},
-  {id:"n02",d:"Wat doe je voor werk?",e:"What do you do for work?",c:"Razgovor"},
-  {id:"n03",d:"Ik ben leraar.",e:"I am a teacher.",c:"Razgovor"},
-  {id:"n04",d:"Ik woon in Amsterdam.",e:"I live in Amsterdam.",c:"Razgovor"},
-  {id:"n05",d:"Heb je kinderen?",e:"Do you have children?",c:"Razgovor"},
-  {id:"n06",d:"Ik heb een hond.",e:"I have a dog.",c:"Razgovor"},
-  {id:"n07",d:"Wat zijn uw hobbys?",e:"What are your hobbies?",c:"Razgovor"},
-  {id:"n08",d:"Ik houd van muziek.",e:"I love music.",c:"Razgovor"},
-  {id:"n09",d:"Ik speel gitaar.",e:"I play guitar.",c:"Razgovor"},
-  {id:"n10",d:"Ik lees graag boeken.",e:"I like reading books.",c:"Razgovor"},
-  {id:"n11",d:"Ik kijk graag films.",e:"I like watching films.",c:"Razgovor"},
-  {id:"n12",d:"Ben je getrouwd?",e:"Are you married?",c:"Razgovor"},
-  {id:"n13",d:"Ik heb een zus.",e:"I have a sister.",c:"Razgovor"},
-  {id:"n14",d:"Mijn vader is zestig.",e:"My father is sixty.",c:"Razgovor"},
-  {id:"n15",d:"We wonen samen.",e:"We live together.",c:"Razgovor"},
-  {id:"n16",d:"Dat is interessant.",e:"That is interesting.",c:"Razgovor"},
-  {id:"n17",d:"Ik begrijp je.",e:"I understand you.",c:"Razgovor"},
-  {id:"n18",d:"Kun je dat uitleggen?",e:"Can you explain that?",c:"Razgovor"},
-  {id:"n19",d:"Wat vind jij ervan?",e:"What do you think about it?",c:"Razgovor"},
-  {id:"n20",d:"Ik ben het eens.",e:"I agree.",c:"Razgovor"},
-  {id:"h01",d:"Ik zoek een kamer.",e:"I am looking for a room.",c:"Hotel"},
-  {id:"h02",d:"Heeft u een kamer vrij?",e:"Do you have a room available?",c:"Hotel"},
-  {id:"h03",d:"Voor hoeveel nachten?",e:"For how many nights?",c:"Hotel"},
-  {id:"h04",d:"Is het ontbijt inbegrepen?",e:"Is breakfast included?",c:"Hotel"},
-  {id:"h05",d:"Ik wil inchecken.",e:"I would like to check in.",c:"Hotel"},
-  {id:"h06",d:"Ik wil uitchecken.",e:"I would like to check out.",c:"Hotel"},
-  {id:"h07",d:"De kamer is te klein.",e:"The room is too small.",c:"Hotel"},
-  {id:"h08",d:"Er is geen warm water.",e:"There is no hot water.",c:"Hotel"},
-  {id:"h09",d:"Kunt u mijn bagage bewaren?",e:"Can you store my luggage?",c:"Hotel"},
-  {id:"h10",d:"Wat is de uitchectijd?",e:"What is the checkout time?",c:"Hotel"},
-  {id:"h11",d:"De lift is buiten werking.",e:"The elevator is out of order.",c:"Hotel"},
-  {id:"h12",d:"Heeft u een stille kamer?",e:"Do you have a quiet room?",c:"Hotel"},
-  {id:"h13",d:"Ik wil graag een reservering maken.",e:"I would like to make a reservation.",c:"Hotel"},
-  {id:"h14",d:"Is er parkeergelegenheid?",e:"Is there parking available?",c:"Hotel"},
-  {id:"h15",d:"Wat is het wachtwoord voor wifi?",e:"What is the wifi password?",c:"Hotel"},
-  {id:"c01",d:"Hoeveel kost dit shirt?",e:"How much does this shirt cost?",c:"Kupnja"},
-  {id:"c02",d:"Heeft u dit in maat M?",e:"Do you have this in size M?",c:"Kupnja"},
-  {id:"c03",d:"Ik pas dit even.",e:"I will try this on.",c:"Kupnja"},
-  {id:"c04",d:"Dit is te groot.",e:"This is too big.",c:"Kupnja"},
-  {id:"c05",d:"Dit is te klein.",e:"This is too small.",c:"Kupnja"},
-  {id:"c06",d:"Heeft u iets goedkopers?",e:"Do you have something cheaper?",c:"Kupnja"},
-  {id:"c07",d:"Ik neem het.",e:"I will take it.",c:"Kupnja"},
-  {id:"c08",d:"Kan ik dit ruilen?",e:"Can I exchange this?",c:"Kupnja"},
-  {id:"c09",d:"Waar zijn de paskamers?",e:"Where are the fitting rooms?",c:"Kupnja"},
-  {id:"c10",d:"Heeft u de bon nog?",e:"Do you still have the receipt?",c:"Kupnja"},
-  {id:"c11",d:"Dit is in de aanbieding.",e:"This is on sale.",c:"Kupnja"},
-  {id:"c12",d:"Hoeveel korting is dat?",e:"How much discount is that?",c:"Kupnja"},
-  {id:"c13",d:"Ik betaal contant.",e:"I pay in cash.",c:"Kupnja"},
-  {id:"c14",d:"Kunt u dit inpakken?",e:"Can you wrap this up?",c:"Kupnja"},
-  {id:"c15",d:"Is dit van leer?",e:"Is this made of leather?",c:"Kupnja"}
+/* ── A1 Greetings ── */
+{id:"a1g01",d:"Hallo.",e:"Hello.",c:"Greetings",l:"A1"},
+{id:"a1g02",d:"Hallo, hoe gaat het?",e:"Hello, how are you?",c:"Greetings",l:"A1"},
+{id:"a1g03",d:"Goed, dank je.",e:"Good, thank you.",c:"Greetings",l:"A1"},
+{id:"a1g04",d:"Goedemorgen!",e:"Good morning!",c:"Greetings",l:"A1"},
+{id:"a1g05",d:"Goedemiddag.",e:"Good afternoon.",c:"Greetings",l:"A1"},
+{id:"a1g06",d:"Goedenavond.",e:"Good evening.",c:"Greetings",l:"A1"},
+{id:"a1g07",d:"Goedenacht.",e:"Good night.",c:"Greetings",l:"A1"},
+{id:"a1g08",d:"Tot ziens.",e:"Goodbye.",c:"Greetings",l:"A1"},
+{id:"a1g09",d:"Tot morgen.",e:"See you tomorrow.",c:"Greetings",l:"A1"},
+{id:"a1g10",d:"Tot later.",e:"See you later.",c:"Greetings",l:"A1"},
+{id:"a1g11",d:"Dank je wel.",e:"Thank you.",c:"Greetings",l:"A1"},
+{id:"a1g12",d:"Alstublieft.",e:"Here you go.",c:"Greetings",l:"A1"},
+{id:"a1g13",d:"Graag gedaan.",e:"You are welcome.",c:"Greetings",l:"A1"},
+{id:"a1g14",d:"Sorry.",e:"Sorry.",c:"Greetings",l:"A1"},
+{id:"a1g15",d:"Geen probleem.",e:"No problem.",c:"Greetings",l:"A1"},
+{id:"a1g16",d:"Ja.",e:"Yes.",c:"Greetings",l:"A1"},
+{id:"a1g17",d:"Nee.",e:"No.",c:"Greetings",l:"A1"},
+{id:"a1g18",d:"Hoe heet je?",e:"What is your name?",c:"Greetings",l:"A1"},
+{id:"a1g19",d:"Mijn naam is Ana.",e:"My name is Ana.",c:"Greetings",l:"A1"},
+{id:"a1g20",d:"Aangenaam.",e:"Nice to meet you.",c:"Greetings",l:"A1"},
+{id:"a1g21",d:"Hoe oud ben je?",e:"How old are you?",c:"Greetings",l:"A1"},
+{id:"a1g22",d:"Ik ben twintig jaar.",e:"I am twenty years old.",c:"Greetings",l:"A1"},
+{id:"a1g23",d:"Ja, natuurlijk.",e:"Yes, of course.",c:"Greetings",l:"A1"},
+{id:"a1g24",d:"Nee, dank je.",e:"No, thank you.",c:"Greetings",l:"A1"},
+{id:"a1g25",d:"Ik weet het niet.",e:"I do not know.",c:"Greetings",l:"A1"},
+{id:"a1g26",d:"Dat klopt.",e:"That is correct.",c:"Greetings",l:"A1"},
+{id:"a1g27",d:"Oké.",e:"Okay.",c:"Greetings",l:"A1"},
+{id:"a1g28",d:"Een moment, alstublieft.",e:"One moment please.",c:"Greetings",l:"A1"},
+{id:"a1g29",d:"Ik begrijp het niet.",e:"I do not understand.",c:"Greetings",l:"A1"},
+{id:"a1g30",d:"Spreekt u Engels?",e:"Do you speak English?",c:"Greetings",l:"A1"},
+/* ── A2 Greetings ── */
+{id:"a2g01",d:"Heel erg bedankt voor uw hulp.",e:"Thank you very much for your help.",c:"Greetings",l:"A2"},
+{id:"a2g02",d:"Aangenaam kennis te maken.",e:"Nice to meet you.",c:"Greetings",l:"A2"},
+{id:"a2g03",d:"Waar kom je vandaan?",e:"Where are you from?",c:"Greetings",l:"A2"},
+{id:"a2g04",d:"Ik kom uit Kroatie.",e:"I come from Croatia.",c:"Greetings",l:"A2"},
+{id:"a2g05",d:"Ik spreek een beetje Nederlands.",e:"I speak a little Dutch.",c:"Greetings",l:"A2"},
+{id:"a2g06",d:"Kunt u dat herhalen, alstublieft?",e:"Can you repeat that please?",c:"Greetings",l:"A2"},
+{id:"a2g07",d:"Kunt u wat langzamer spreken?",e:"Can you speak a bit slower?",c:"Greetings",l:"A2"},
+{id:"a2g08",d:"Wat betekent dit woord?",e:"What does this word mean?",c:"Greetings",l:"A2"},
+{id:"a2g09",d:"Hoe zeg je dat in het Nederlands?",e:"How do you say that in Dutch?",c:"Greetings",l:"A2"},
+{id:"a2g10",d:"Ik leer Nederlands.",e:"I am learning Dutch.",c:"Greetings",l:"A2"},
+{id:"a2g11",d:"Dat is niet waar.",e:"That is not true.",c:"Greetings",l:"A2"},
+{id:"a2g12",d:"Ik ben het er niet mee eens.",e:"I do not agree with that.",c:"Greetings",l:"A2"},
+{id:"a2g13",d:"Dat vind ik ook.",e:"I think so too.",c:"Greetings",l:"A2"},
+{id:"a2g14",d:"Wat denk jij ervan?",e:"What do you think about it?",c:"Greetings",l:"A2"},
+{id:"a2g15",d:"Ik ben het met je eens.",e:"I agree with you.",c:"Greetings",l:"A2"},
+/* ── A1 Food ── */
+{id:"a1f01",d:"Ik heb honger.",e:"I am hungry.",c:"Food",l:"A1"},
+{id:"a1f02",d:"Ik heb dorst.",e:"I am thirsty.",c:"Food",l:"A1"},
+{id:"a1f03",d:"Ik wil koffie.",e:"I want coffee.",c:"Food",l:"A1"},
+{id:"a1f04",d:"Ik wil thee.",e:"I want tea.",c:"Food",l:"A1"},
+{id:"a1f05",d:"Ik wil water.",e:"I want water.",c:"Food",l:"A1"},
+{id:"a1f06",d:"Ik eet brood.",e:"I am eating bread.",c:"Food",l:"A1"},
+{id:"a1f07",d:"Ik drink melk.",e:"I am drinking milk.",c:"Food",l:"A1"},
+{id:"a1f08",d:"Het is lekker.",e:"It is tasty.",c:"Food",l:"A1"},
+{id:"a1f09",d:"Het is te zout.",e:"It is too salty.",c:"Food",l:"A1"},
+{id:"a1f10",d:"Het is te heet.",e:"It is too hot.",c:"Food",l:"A1"},
+{id:"a1f11",d:"Mag ik de rekening?",e:"May I have the bill?",c:"Food",l:"A1"},
+{id:"a1f12",d:"Wat kost dit?",e:"What does this cost?",c:"Food",l:"A1"},
+{id:"a1f13",d:"Een glas water.",e:"A glass of water.",c:"Food",l:"A1"},
+{id:"a1f14",d:"Twee bier.",e:"Two beers.",c:"Food",l:"A1"},
+{id:"a1f15",d:"Ik houd van kaas.",e:"I love cheese.",c:"Food",l:"A1"},
+{id:"a1f16",d:"De soep is heet.",e:"The soup is hot.",c:"Food",l:"A1"},
+{id:"a1f17",d:"Het brood is vers.",e:"The bread is fresh.",c:"Food",l:"A1"},
+{id:"a1f18",d:"De melk is koud.",e:"The milk is cold.",c:"Food",l:"A1"},
+{id:"a1f19",d:"Ik eet een appel.",e:"I am eating an apple.",c:"Food",l:"A1"},
+{id:"a1f20",d:"Ik drink koffie.",e:"I am drinking coffee.",c:"Food",l:"A1"},
+{id:"a1f21",d:"Ik wil een broodje.",e:"I want a sandwich.",c:"Food",l:"A1"},
+{id:"a1f22",d:"Het ei is hard.",e:"The egg is hard.",c:"Food",l:"A1"},
+{id:"a1f23",d:"Ik eet graag fruit.",e:"I like eating fruit.",c:"Food",l:"A1"},
+{id:"a1f24",d:"De koffie is warm.",e:"The coffee is warm.",c:"Food",l:"A1"},
+{id:"a1f25",d:"Mag ik een vork?",e:"May I have a fork?",c:"Food",l:"A1"},
+/* ── A2 Food ── */
+{id:"a2f01",d:"Ik wil graag koffie met melk.",e:"I would like coffee with milk.",c:"Food",l:"A2"},
+{id:"a2f02",d:"Mag ik de menukaart, alstublieft?",e:"May I have the menu please?",c:"Food",l:"A2"},
+{id:"a2f03",d:"Wat wilt u eten vanavond?",e:"What would you like to eat tonight?",c:"Food",l:"A2"},
+{id:"a2f04",d:"Heeft u een tafel voor twee personen?",e:"Do you have a table for two people?",c:"Food",l:"A2"},
+{id:"a2f05",d:"Ik ben allergisch voor noten.",e:"I am allergic to nuts.",c:"Food",l:"A2"},
+{id:"a2f06",d:"Kan ik zonder vlees bestellen?",e:"Can I order without meat?",c:"Food",l:"A2"},
+{id:"a2f07",d:"Is er een vegetarisch gerecht?",e:"Is there a vegetarian dish?",c:"Food",l:"A2"},
+{id:"a2f08",d:"Ik neem de dagschotel.",e:"I will take the dish of the day.",c:"Food",l:"A2"},
+{id:"a2f09",d:"Wilt u iets drinken voor het eten?",e:"Would you like something to drink before the meal?",c:"Food",l:"A2"},
+{id:"a2f10",d:"Het eten was uitstekend.",e:"The food was excellent.",c:"Food",l:"A2"},
+{id:"a2f11",d:"Kunt u het eten terugbrengen? Het is koud.",e:"Can you take the food back? It is cold.",c:"Food",l:"A2"},
+{id:"a2f12",d:"Ik wil graag een dessert bestellen.",e:"I would like to order a dessert.",c:"Food",l:"A2"},
+{id:"a2f13",d:"Met of zonder suiker?",e:"With or without sugar?",c:"Food",l:"A2"},
+{id:"a2f14",d:"Heeft u ook glutenvrije opties?",e:"Do you also have gluten-free options?",c:"Food",l:"A2"},
+{id:"a2f15",d:"De bediening was erg vriendelijk.",e:"The service was very friendly.",c:"Food",l:"A2"},
+{id:"a2f16",d:"Kunnen wij apart betalen?",e:"Can we pay separately?",c:"Food",l:"A2"},
+{id:"a2f17",d:"Is de fooi inbegrepen?",e:"Is the tip included?",c:"Food",l:"A2"},
+{id:"a2f18",d:"Ik houd niet van vis.",e:"I do not like fish.",c:"Food",l:"A2"},
+{id:"a2f19",d:"Dit gerecht is te pittig voor mij.",e:"This dish is too spicy for me.",c:"Food",l:"A2"},
+{id:"a2f20",d:"Heeft u een tafel gereserveerd?",e:"Do you have a table reserved?",c:"Food",l:"A2"},
+{id:"a2f21",d:"Wij willen graag buiten zitten.",e:"We would like to sit outside.",c:"Food",l:"A2"},
+{id:"a2f22",d:"Kunt u een kinderstoel brengen?",e:"Can you bring a high chair?",c:"Food",l:"A2"},
+{id:"a2f23",d:"Wat zijn de aanbevelingen van de chef?",e:"What are the chef's recommendations?",c:"Food",l:"A2"},
+{id:"a2f24",d:"Ik neem hetzelfde als mijn vriend.",e:"I will have the same as my friend.",c:"Food",l:"A2"},
+{id:"a2f25",d:"Mag ik nog een kopje koffie?",e:"May I have another cup of coffee?",c:"Food",l:"A2"},
+/* ── A1 Directions ── */
+{id:"a1d01",d:"Waar is het station?",e:"Where is the station?",c:"Directions",l:"A1"},
+{id:"a1d02",d:"Ga rechtdoor.",e:"Go straight ahead.",c:"Directions",l:"A1"},
+{id:"a1d03",d:"Sla linksaf.",e:"Turn left.",c:"Directions",l:"A1"},
+{id:"a1d04",d:"Sla rechtsaf.",e:"Turn right.",c:"Directions",l:"A1"},
+{id:"a1d05",d:"Is het ver?",e:"Is it far?",c:"Directions",l:"A1"},
+{id:"a1d06",d:"Ik ben verdwaald.",e:"I am lost.",c:"Directions",l:"A1"},
+{id:"a1d07",d:"Waar is de bushalte?",e:"Where is the bus stop?",c:"Directions",l:"A1"},
+{id:"a1d08",d:"Welk perron?",e:"Which platform?",c:"Directions",l:"A1"},
+{id:"a1d09",d:"Links is het park.",e:"On the left is the park.",c:"Directions",l:"A1"},
+{id:"a1d10",d:"Rechts is het museum.",e:"On the right is the museum.",c:"Directions",l:"A1"},
+{id:"a1d11",d:"De bus is te laat.",e:"The bus is late.",c:"Directions",l:"A1"},
+{id:"a1d12",d:"Een kaartje naar Amsterdam.",e:"A ticket to Amsterdam.",c:"Directions",l:"A1"},
+{id:"a1d13",d:"Ik zoek het hotel.",e:"I am looking for the hotel.",c:"Directions",l:"A1"},
+{id:"a1d14",d:"Kunt u mij helpen?",e:"Can you help me?",c:"Directions",l:"A1"},
+{id:"a1d15",d:"Mag ik hier instappen?",e:"Can I board here?",c:"Directions",l:"A1"},
+{id:"a1d16",d:"Waar is de ingang?",e:"Where is the entrance?",c:"Directions",l:"A1"},
+{id:"a1d17",d:"Waar is de uitgang?",e:"Where is the exit?",c:"Directions",l:"A1"},
+{id:"a1d18",d:"Het is hier in de buurt.",e:"It is nearby.",c:"Directions",l:"A1"},
+{id:"a1d19",d:"Ga de straat over.",e:"Cross the street.",c:"Directions",l:"A1"},
+{id:"a1d20",d:"Het is aan de linkerkant.",e:"It is on the left side.",c:"Directions",l:"A1"},
+/* ── A2 Directions ── */
+{id:"a2d01",d:"Hoe kom ik bij het centrum?",e:"How do I get to the center?",c:"Directions",l:"A2"},
+{id:"a2d02",d:"Hoe ver is het lopen naar het station?",e:"How far is it to walk to the station?",c:"Directions",l:"A2"},
+{id:"a2d03",d:"Is dit de goede richting voor het museum?",e:"Is this the right direction for the museum?",c:"Directions",l:"A2"},
+{id:"a2d04",d:"Wanneer vertrekt de volgende trein?",e:"When does the next train leave?",c:"Directions",l:"A2"},
+{id:"a2d05",d:"Ik moet overstappen in Utrecht.",e:"I have to transfer in Utrecht.",c:"Directions",l:"A2"},
+{id:"a2d06",d:"Een retourkaartje naar Den Haag.",e:"A return ticket to The Hague.",c:"Directions",l:"A2"},
+{id:"a2d07",d:"Hoe lang duurt de reis naar Rotterdam?",e:"How long does the journey to Rotterdam take?",c:"Directions",l:"A2"},
+{id:"a2d08",d:"Is er een taxi standplaats hier in de buurt?",e:"Is there a taxi stand nearby?",c:"Directions",l:"A2"},
+{id:"a2d09",d:"De apotheek is verderop aan de rechterkant.",e:"The pharmacy is further along on the right side.",c:"Directions",l:"A2"},
+{id:"a2d10",d:"Hoe laat gaat de laatste bus?",e:"What time does the last bus go?",c:"Directions",l:"A2"},
+{id:"a2d11",d:"Het centrum is ongeveer tien minuten lopen.",e:"The center is about ten minutes walking.",c:"Directions",l:"A2"},
+{id:"a2d12",d:"Ik wil naar het vliegveld.",e:"I want to go to the airport.",c:"Directions",l:"A2"},
+{id:"a2d13",d:"Welke tram moet ik nemen?",e:"Which tram do I need to take?",c:"Directions",l:"A2"},
+{id:"a2d14",d:"Waar kan ik een fiets huren?",e:"Where can I rent a bike?",c:"Directions",l:"A2"},
+{id:"a2d15",d:"Kunt u mij op de kaart aanwijzen?",e:"Can you point it out on the map?",c:"Directions",l:"A2"},
+{id:"a2d16",d:"Hoe kom ik op het vliegveld?",e:"How do I get to the airport?",c:"Directions",l:"A2"},
+{id:"a2d17",d:"De trein rijdt elk halfuur.",e:"The train runs every half hour.",c:"Directions",l:"A2"},
+{id:"a2d18",d:"Is dit de bus naar het centrum?",e:"Is this the bus to the center?",c:"Directions",l:"A2"},
+{id:"a2d19",d:"Waar moet ik uitstappen?",e:"Where do I need to get off?",c:"Directions",l:"A2"},
+{id:"a2d20",d:"Kunt u mij roepen als we er zijn?",e:"Can you call me when we arrive?",c:"Directions",l:"A2"},
+/* ── A1 Daily Life ── */
+{id:"a1s01",d:"Ik ben moe.",e:"I am tired.",c:"Daily Life",l:"A1"},
+{id:"a1s02",d:"Ik ben ziek.",e:"I am sick.",c:"Daily Life",l:"A1"},
+{id:"a1s03",d:"Ik heb pijn.",e:"I am in pain.",c:"Daily Life",l:"A1"},
+{id:"a1s04",d:"Het is koud.",e:"It is cold.",c:"Daily Life",l:"A1"},
+{id:"a1s05",d:"Het is warm.",e:"It is warm.",c:"Daily Life",l:"A1"},
+{id:"a1s06",d:"Het regent.",e:"It is raining.",c:"Daily Life",l:"A1"},
+{id:"a1s07",d:"De winkel is dicht.",e:"The shop is closed.",c:"Daily Life",l:"A1"},
+{id:"a1s08",d:"Hoeveel kost dat?",e:"How much does that cost?",c:"Daily Life",l:"A1"},
+{id:"a1s09",d:"Hoe laat is het?",e:"What time is it?",c:"Daily Life",l:"A1"},
+{id:"a1s10",d:"Het is tien uur.",e:"It is ten o clock.",c:"Daily Life",l:"A1"},
+{id:"a1s11",d:"Vandaag is het maandag.",e:"Today is Monday.",c:"Daily Life",l:"A1"},
+{id:"a1s12",d:"Ik ga slapen.",e:"I am going to sleep.",c:"Daily Life",l:"A1"},
+{id:"a1s13",d:"Ik sta op.",e:"I am getting up.",c:"Daily Life",l:"A1"},
+{id:"a1s14",d:"Ik ga naar huis.",e:"I am going home.",c:"Daily Life",l:"A1"},
+{id:"a1s15",d:"Mijn telefoon is leeg.",e:"My phone is dead.",c:"Daily Life",l:"A1"},
+{id:"a1s16",d:"Heeft u wifi?",e:"Do you have wifi?",c:"Daily Life",l:"A1"},
+{id:"a1s17",d:"Ik betaal met pinpas.",e:"I pay by debit card.",c:"Daily Life",l:"A1"},
+{id:"a1s18",d:"Ik betaal contant.",e:"I pay in cash.",c:"Daily Life",l:"A1"},
+{id:"a1s19",d:"Ik heb hoofdpijn.",e:"I have a headache.",c:"Daily Life",l:"A1"},
+{id:"a1s20",d:"Ik heb koorts.",e:"I have a fever.",c:"Daily Life",l:"A1"},
+{id:"a1s21",d:"Het is mooi weer.",e:"The weather is nice.",c:"Daily Life",l:"A1"},
+{id:"a1s22",d:"Het sneeuwt.",e:"It is snowing.",c:"Daily Life",l:"A1"},
+{id:"a1s23",d:"De zon schijnt.",e:"The sun is shining.",c:"Daily Life",l:"A1"},
+{id:"a1s24",d:"Ik heb geld nodig.",e:"I need money.",c:"Daily Life",l:"A1"},
+{id:"a1s25",d:"De winkel is open.",e:"The shop is open.",c:"Daily Life",l:"A1"},
+/* ── A2 Daily Life ── */
+{id:"a2s01",d:"Ik werk elke dag van negen tot vijf.",e:"I work every day from nine to five.",c:"Daily Life",l:"A2"},
+{id:"a2s02",d:"Ik sta om zeven uur op en ontbijt thuis.",e:"I get up at seven and have breakfast at home.",c:"Daily Life",l:"A2"},
+{id:"a2s03",d:"Het is mooi weer vandaag, niet?",e:"The weather is nice today, is it not?",c:"Daily Life",l:"A2"},
+{id:"a2s04",d:"Het regent hard buiten vandaag.",e:"It is raining hard outside today.",c:"Daily Life",l:"A2"},
+{id:"a2s05",d:"De supermarkt is om de hoek.",e:"The supermarket is around the corner.",c:"Daily Life",l:"A2"},
+{id:"a2s06",d:"Ik heb een afspraak met de dokter.",e:"I have an appointment with the doctor.",c:"Daily Life",l:"A2"},
+{id:"a2s07",d:"Ik voel me niet goed vandaag.",e:"I do not feel well today.",c:"Daily Life",l:"A2"},
+{id:"a2s08",d:"Is er een apotheek hier in de buurt?",e:"Is there a pharmacy nearby?",c:"Daily Life",l:"A2"},
+{id:"a2s09",d:"Ik heb dit medicijn nodig.",e:"I need this medicine.",c:"Daily Life",l:"A2"},
+{id:"a2s10",d:"Het postkantoor is links van de bank.",e:"The post office is to the left of the bank.",c:"Daily Life",l:"A2"},
+{id:"a2s11",d:"Ik bel u morgenochtend terug.",e:"I will call you back tomorrow morning.",c:"Daily Life",l:"A2"},
+{id:"a2s12",d:"Ik werk vanuit huis twee dagen per week.",e:"I work from home two days a week.",c:"Daily Life",l:"A2"},
+{id:"a2s13",d:"De vergadering begint om negen uur precies.",e:"The meeting starts at nine o clock exactly.",c:"Daily Life",l:"A2"},
+{id:"a2s14",d:"Ik heb mijn sleutels verloren.",e:"I have lost my keys.",c:"Daily Life",l:"A2"},
+{id:"a2s15",d:"Ik moet dit formulier invullen.",e:"I have to fill in this form.",c:"Daily Life",l:"A2"},
+{id:"a2s16",d:"De bank is gesloten op zondag.",e:"The bank is closed on Sunday.",c:"Daily Life",l:"A2"},
+{id:"a2s17",d:"Ik moet morgen vroeg opstaan.",e:"I have to get up early tomorrow.",c:"Daily Life",l:"A2"},
+{id:"a2s18",d:"Kunt u dit pakket voor mij bewaren?",e:"Can you keep this package for me?",c:"Daily Life",l:"A2"},
+{id:"a2s19",d:"Ik ga boodschappen doen na het werk.",e:"I am going grocery shopping after work.",c:"Daily Life",l:"A2"},
+{id:"a2s20",d:"De wasmachine is kapot.",e:"The washing machine is broken.",c:"Daily Life",l:"A2"},
+{id:"a2s21",d:"Ik heb een nieuwe laptop nodig.",e:"I need a new laptop.",c:"Daily Life",l:"A2"},
+{id:"a2s22",d:"Kunt u dit voor mij repareren?",e:"Can you repair this for me?",c:"Daily Life",l:"A2"},
+{id:"a2s23",d:"Het pakket is gisteren aangekomen.",e:"The package arrived yesterday.",c:"Daily Life",l:"A2"},
+{id:"a2s24",d:"Ik moet de huur betalen voor de eerste.",e:"I have to pay rent before the first.",c:"Daily Life",l:"A2"},
+{id:"a2s25",d:"De buren zijn erg luidruchtig.",e:"The neighbours are very noisy.",c:"Daily Life",l:"A2"},
+/* ── A1 Conversation ── */
+{id:"a1c01",d:"Ik heet Peter.",e:"My name is Peter.",c:"Conversation",l:"A1"},
+{id:"a1c02",d:"Ik ben leraar.",e:"I am a teacher.",c:"Conversation",l:"A1"},
+{id:"a1c03",d:"Ik woon in Amsterdam.",e:"I live in Amsterdam.",c:"Conversation",l:"A1"},
+{id:"a1c04",d:"Ik heb een hond.",e:"I have a dog.",c:"Conversation",l:"A1"},
+{id:"a1c05",d:"Ik houd van muziek.",e:"I love music.",c:"Conversation",l:"A1"},
+{id:"a1c06",d:"Ik speel gitaar.",e:"I play guitar.",c:"Conversation",l:"A1"},
+{id:"a1c07",d:"Ik heb een zus.",e:"I have a sister.",c:"Conversation",l:"A1"},
+{id:"a1c08",d:"Mijn vader is zestig.",e:"My father is sixty.",c:"Conversation",l:"A1"},
+{id:"a1c09",d:"Ik lees graag boeken.",e:"I like reading books.",c:"Conversation",l:"A1"},
+{id:"a1c10",d:"Ik kijk graag films.",e:"I like watching films.",c:"Conversation",l:"A1"},
+{id:"a1c11",d:"Ik heb een kat.",e:"I have a cat.",c:"Conversation",l:"A1"},
+{id:"a1c12",d:"Ik ben student.",e:"I am a student.",c:"Conversation",l:"A1"},
+{id:"a1c13",d:"Ik kom uit Belgie.",e:"I come from Belgium.",c:"Conversation",l:"A1"},
+{id:"a1c14",d:"Ik woon alleen.",e:"I live alone.",c:"Conversation",l:"A1"},
+{id:"a1c15",d:"Mijn moeder is dokter.",e:"My mother is a doctor.",c:"Conversation",l:"A1"},
+/* ── A2 Conversation ── */
+{id:"a2c01",d:"Wat doe je voor werk?",e:"What do you do for work?",c:"Conversation",l:"A2"},
+{id:"a2c02",d:"Ik werk al vijf jaar bij deze firma.",e:"I have worked at this company for five years.",c:"Conversation",l:"A2"},
+{id:"a2c03",d:"Heb je broers of zussen?",e:"Do you have brothers or sisters?",c:"Conversation",l:"A2"},
+{id:"a2c04",d:"Wat zijn uw hobbys in uw vrije tijd?",e:"What are your hobbies in your free time?",c:"Conversation",l:"A2"},
+{id:"a2c05",d:"Ik sport drie keer per week.",e:"I exercise three times a week.",c:"Conversation",l:"A2"},
+{id:"a2c06",d:"Wij wonen al twee jaar samen.",e:"We have been living together for two years.",c:"Conversation",l:"A2"},
+{id:"a2c07",d:"Dat is heel interessant, vertel eens meer.",e:"That is very interesting, tell me more.",c:"Conversation",l:"A2"},
+{id:"a2c08",d:"Kun je dat nog eens uitleggen?",e:"Can you explain that once more?",c:"Conversation",l:"A2"},
+{id:"a2c09",d:"Ik ben het er helemaal mee eens.",e:"I completely agree with that.",c:"Conversation",l:"A2"},
+{id:"a2c10",d:"Hoe lang woon je al in Nederland?",e:"How long have you been living in the Netherlands?",c:"Conversation",l:"A2"},
+{id:"a2c11",d:"Ik studeer aan de universiteit van Utrecht.",e:"I study at the university of Utrecht.",c:"Conversation",l:"A2"},
+{id:"a2c12",d:"Mijn hobby is fotograferen in de natuur.",e:"My hobby is photography in nature.",c:"Conversation",l:"A2"},
+{id:"a2c13",d:"Ik ga graag naar concerten in het weekend.",e:"I like going to concerts at the weekend.",c:"Conversation",l:"A2"},
+{id:"a2c14",d:"Mijn beste vriend woont in een andere stad.",e:"My best friend lives in another city.",c:"Conversation",l:"A2"},
+{id:"a2c15",d:"Wij kennen elkaar al meer dan tien jaar.",e:"We have known each other for more than ten years.",c:"Conversation",l:"A2"},
+/* ── A1 Hotel ── */
+{id:"a1h01",d:"Ik zoek een kamer.",e:"I am looking for a room.",c:"Hotel",l:"A1"},
+{id:"a1h02",d:"Heeft u een kamer vrij?",e:"Do you have a room available?",c:"Hotel",l:"A1"},
+{id:"a1h03",d:"Ik wil inchecken.",e:"I would like to check in.",c:"Hotel",l:"A1"},
+{id:"a1h04",d:"Ik wil uitchecken.",e:"I would like to check out.",c:"Hotel",l:"A1"},
+{id:"a1h05",d:"De kamer is te klein.",e:"The room is too small.",c:"Hotel",l:"A1"},
+{id:"a1h06",d:"Er is geen warm water.",e:"There is no hot water.",c:"Hotel",l:"A1"},
+{id:"a1h07",d:"De lift is buiten werking.",e:"The elevator is out of order.",c:"Hotel",l:"A1"},
+{id:"a1h08",d:"Wat is het wachtwoord voor wifi?",e:"What is the wifi password?",c:"Hotel",l:"A1"},
+{id:"a1h09",d:"Is het ontbijt inbegrepen?",e:"Is breakfast included?",c:"Hotel",l:"A1"},
+{id:"a1h10",d:"Voor hoeveel nachten?",e:"For how many nights?",c:"Hotel",l:"A1"},
+/* ── A2 Hotel ── */
+{id:"a2h01",d:"Ik heb een reservering gemaakt voor twee nachten.",e:"I have made a reservation for two nights.",c:"Hotel",l:"A2"},
+{id:"a2h02",d:"Is er een stille kamer beschikbaar?",e:"Is there a quiet room available?",c:"Hotel",l:"A2"},
+{id:"a2h03",d:"Kunt u mijn bagage bewaren tot vanavond?",e:"Can you store my luggage until tonight?",c:"Hotel",l:"A2"},
+{id:"a2h04",d:"Wat is de uitchectijd morgenochtend?",e:"What is the checkout time tomorrow morning?",c:"Hotel",l:"A2"},
+{id:"a2h05",d:"Is er parkeergelegenheid bij het hotel?",e:"Is there parking at the hotel?",c:"Hotel",l:"A2"},
+{id:"a2h06",d:"Kan ik een extra deken krijgen?",e:"Can I get an extra blanket?",c:"Hotel",l:"A2"},
+{id:"a2h07",d:"De airconditioning in mijn kamer werkt niet.",e:"The air conditioning in my room is not working.",c:"Hotel",l:"A2"},
+{id:"a2h08",d:"Kunt u een taxi voor mij bestellen?",e:"Can you order a taxi for me?",c:"Hotel",l:"A2"},
+{id:"a2h09",d:"Ik wil graag een kamer met uitzicht op de stad.",e:"I would like a room with a view of the city.",c:"Hotel",l:"A2"},
+{id:"a2h10",d:"Is er een restaurant in het hotel?",e:"Is there a restaurant in the hotel?",c:"Hotel",l:"A2"},
+{id:"a2h11",d:"Kunt u mij om zeven uur wekken?",e:"Can you wake me up at seven o clock?",c:"Hotel",l:"A2"},
+{id:"a2h12",d:"Ik wil mijn reservering verlengen.",e:"I want to extend my reservation.",c:"Hotel",l:"A2"},
+{id:"a2h13",d:"Er is een probleem met de verwarming.",e:"There is a problem with the heating.",c:"Hotel",l:"A2"},
+{id:"a2h14",d:"Kunt u mij een plattegrond van de stad geven?",e:"Can you give me a map of the city?",c:"Hotel",l:"A2"},
+{id:"a2h15",d:"Waar kan ik de was laten doen?",e:"Where can I get laundry done?",c:"Hotel",l:"A2"},
+/* ── A1 Shopping ── */
+{id:"a1sh01",d:"Hoeveel kost dit?",e:"How much does this cost?",c:"Shopping",l:"A1"},
+{id:"a1sh02",d:"Dat is te duur.",e:"That is too expensive.",c:"Shopping",l:"A1"},
+{id:"a1sh03",d:"Heeft u dit goedkoper?",e:"Do you have this cheaper?",c:"Shopping",l:"A1"},
+{id:"a1sh04",d:"Ik neem het.",e:"I will take it.",c:"Shopping",l:"A1"},
+{id:"a1sh05",d:"Dit is te groot.",e:"This is too big.",c:"Shopping",l:"A1"},
+{id:"a1sh06",d:"Dit is te klein.",e:"This is too small.",c:"Shopping",l:"A1"},
+{id:"a1sh07",d:"Waar zijn de paskamers?",e:"Where are the fitting rooms?",c:"Shopping",l:"A1"},
+{id:"a1sh08",d:"Dit is in de aanbieding.",e:"This is on sale.",c:"Shopping",l:"A1"},
+{id:"a1sh09",d:"Ik betaal met kaart.",e:"I pay by card.",c:"Shopping",l:"A1"},
+{id:"a1sh10",d:"Heeft u de bon?",e:"Do you have the receipt?",c:"Shopping",l:"A1"},
+{id:"a1sh11",d:"Ik zoek een cadeau.",e:"I am looking for a gift.",c:"Shopping",l:"A1"},
+{id:"a1sh12",d:"Heeft u dit in rood?",e:"Do you have this in red?",c:"Shopping",l:"A1"},
+{id:"a1sh13",d:"Mag ik dit passen?",e:"May I try this on?",c:"Shopping",l:"A1"},
+{id:"a1sh14",d:"Het past perfect.",e:"It fits perfectly.",c:"Shopping",l:"A1"},
+{id:"a1sh15",d:"Ik kom later terug.",e:"I will come back later.",c:"Shopping",l:"A1"},
+/* ── A2 Shopping ── */
+{id:"a2sh01",d:"Heeft u dit shirt in maat medium?",e:"Do you have this shirt in size medium?",c:"Shopping",l:"A2"},
+{id:"a2sh02",d:"Ik wil dit graag passen in de paskamer.",e:"I would like to try this on in the fitting room.",c:"Shopping",l:"A2"},
+{id:"a2sh03",d:"Kan ik dit ruilen als het niet past?",e:"Can I exchange this if it does not fit?",c:"Shopping",l:"A2"},
+{id:"a2sh04",d:"Hoeveel korting krijg ik op dit product?",e:"How much discount do I get on this product?",c:"Shopping",l:"A2"},
+{id:"a2sh05",d:"Is dit van echte leer of kunstleer?",e:"Is this genuine leather or faux leather?",c:"Shopping",l:"A2"},
+{id:"a2sh06",d:"Heeft u ook een grotere maat?",e:"Do you also have a larger size?",c:"Shopping",l:"A2"},
+{id:"a2sh07",d:"Kunt u dit voor mij inpakken als cadeau?",e:"Can you wrap this as a gift for me?",c:"Shopping",l:"A2"},
+{id:"a2sh08",d:"Ik zoek een trui voor de winter.",e:"I am looking for a sweater for the winter.",c:"Shopping",l:"A2"},
+{id:"a2sh09",d:"Wanneer is de volgende uitverkoop?",e:"When is the next sale?",c:"Shopping",l:"A2"},
+{id:"a2sh10",d:"Dit model is helaas uitverkocht.",e:"This model is unfortunately sold out.",c:"Shopping",l:"A2"},
+{id:"a2sh11",d:"Kunt u mij helpen iets te kiezen?",e:"Can you help me choose something?",c:"Shopping",l:"A2"},
+{id:"a2sh12",d:"Ik wil dit terugbrengen.",e:"I want to return this.",c:"Shopping",l:"A2"},
+{id:"a2sh13",d:"Heeft u iets in een donkerdere kleur?",e:"Do you have something in a darker colour?",c:"Shopping",l:"A2"},
+{id:"a2sh14",d:"De rits is kapot.",e:"The zip is broken.",c:"Shopping",l:"A2"},
+{id:"a2sh15",d:"Waar zijn de winterjassen?",e:"Where are the winter coats?",c:"Shopping",l:"A2"},
+/* ── A2 Work ── */
+{id:"a2w01",d:"Ik heb een sollicitatiegesprek morgen.",e:"I have a job interview tomorrow.",c:"Work",l:"A2"},
+{id:"a2w02",d:"Kunt u uw cv naar ons opsturen?",e:"Can you send us your CV?",c:"Work",l:"A2"},
+{id:"a2w03",d:"Ik heb vijf jaar werkervaring.",e:"I have five years of work experience.",c:"Work",l:"A2"},
+{id:"a2w04",d:"Wanneer kunt u beginnen?",e:"When can you start?",c:"Work",l:"A2"},
+{id:"a2w05",d:"Wat is uw salarisverwachting?",e:"What is your salary expectation?",c:"Work",l:"A2"},
+{id:"a2w06",d:"Ik werk liever in een team.",e:"I prefer to work in a team.",c:"Work",l:"A2"},
+{id:"a2w07",d:"Ik heb ervaring met computers.",e:"I have experience with computers.",c:"Work",l:"A2"},
+{id:"a2w08",d:"De vergadering is verzet naar morgen.",e:"The meeting has been moved to tomorrow.",c:"Work",l:"A2"},
+{id:"a2w09",d:"Ik heb een deadline volgende week.",e:"I have a deadline next week.",c:"Work",l:"A2"},
+{id:"a2w10",d:"Kunt u dit rapport controleren?",e:"Can you check this report?",c:"Work",l:"A2"},
+{id:"a2w11",d:"Ik stuur u de documenten per e-mail.",e:"I will send you the documents by email.",c:"Work",l:"A2"},
+{id:"a2w12",d:"We hebben een nieuwe collega.",e:"We have a new colleague.",c:"Work",l:"A2"},
+{id:"a2w13",d:"Ik neem volgende maand vakantie.",e:"I am taking vacation next month.",c:"Work",l:"A2"},
+{id:"a2w14",d:"De werkdag begint om acht uur.",e:"The working day starts at eight o clock.",c:"Work",l:"A2"},
+{id:"a2w15",d:"Kunt u even meedenken over dit probleem?",e:"Can you think along about this problem?",c:"Work",l:"A2"},
+{id:"a2w16",d:"Ik werk parttime, drie dagen per week.",e:"I work part time, three days a week.",c:"Work",l:"A2"},
+{id:"a2w17",d:"Wij hebben een teamvergadering elke maandag.",e:"We have a team meeting every Monday.",c:"Work",l:"A2"},
+{id:"a2w18",d:"Ik ben ziek en kan niet komen vandaag.",e:"I am sick and cannot come today.",c:"Work",l:"A2"},
+{id:"a2w19",d:"Kunt u dit document uitprinten?",e:"Can you print this document?",c:"Work",l:"A2"},
+{id:"a2w20",d:"De baas is vandaag niet op kantoor.",e:"The boss is not in the office today.",c:"Work",l:"A2"},
+/* ── A2 Health ── */
+{id:"a2he01",d:"Ik voel me al drie dagen niet goed.",e:"I have not been feeling well for three days.",c:"Health",l:"A2"},
+{id:"a2he02",d:"Ik heb pijn in mijn keel.",e:"I have a sore throat.",c:"Health",l:"A2"},
+{id:"a2he03",d:"Ik heb buikpijn.",e:"I have a stomach ache.",c:"Health",l:"A2"},
+{id:"a2he04",d:"Ik heb rugpijn.",e:"I have back pain.",c:"Health",l:"A2"},
+{id:"a2he05",d:"Ik moet naar de dokter.",e:"I have to go to the doctor.",c:"Health",l:"A2"},
+{id:"a2he06",d:"Ik heb een recept nodig.",e:"I need a prescription.",c:"Health",l:"A2"},
+{id:"a2he07",d:"Hoe vaak moet ik dit medicijn nemen?",e:"How often do I need to take this medicine?",c:"Health",l:"A2"},
+{id:"a2he08",d:"Ik ben al een week verkouden.",e:"I have had a cold for a week.",c:"Health",l:"A2"},
+{id:"a2he09",d:"Heeft u pijnstillers?",e:"Do you have painkillers?",c:"Health",l:"A2"},
+{id:"a2he10",d:"Ik ben gevallen en mijn enkel doet pijn.",e:"I fell and my ankle hurts.",c:"Health",l:"A2"},
+{id:"a2he11",d:"Moet ik een afspraak maken?",e:"Do I need to make an appointment?",c:"Health",l:"A2"},
+{id:"a2he12",d:"Ik ben allergisch voor penicilline.",e:"I am allergic to penicillin.",c:"Health",l:"A2"},
+{id:"a2he13",d:"Wanneer zijn de resultaten klaar?",e:"When will the results be ready?",c:"Health",l:"A2"},
+{id:"a2he14",d:"De dokter schrijft me rust voor.",e:"The doctor prescribes rest for me.",c:"Health",l:"A2"},
+{id:"a2he15",d:"Ik heb last van mijn rug.",e:"I am suffering from my back.",c:"Health",l:"A2"},
+{id:"a2he16",d:"Mijn arm doet erg veel pijn.",e:"My arm hurts a lot.",c:"Health",l:"A2"},
+{id:"a2he17",d:"Ik heb moeite met slapen.",e:"I have trouble sleeping.",c:"Health",l:"A2"},
+{id:"a2he18",d:"Heeft u iets tegen hoofdpijn?",e:"Do you have something for a headache?",c:"Health",l:"A2"},
+{id:"a2he19",d:"Ik ben duizelig.",e:"I am dizzy.",c:"Health",l:"A2"},
+{id:"a2he20",d:"Kunt u een ambulance bellen?",e:"Can you call an ambulance?",c:"Health",l:"A2"},
+/* ── A2 Family ── */
+{id:"a2fa01",d:"Ik heb twee kinderen, een jongen en een meisje.",e:"I have two children, a boy and a girl.",c:"Family",l:"A2"},
+{id:"a2fa02",d:"Mijn man werkt als ingenieur.",e:"My husband works as an engineer.",c:"Family",l:"A2"},
+{id:"a2fa03",d:"Mijn vrouw studeert aan de universiteit.",e:"My wife is studying at university.",c:"Family",l:"A2"},
+{id:"a2fa04",d:"Mijn ouders wonen in een klein dorp.",e:"My parents live in a small village.",c:"Family",l:"A2"},
+{id:"a2fa05",d:"Mijn broer is drie jaar jonger dan ik.",e:"My brother is three years younger than me.",c:"Family",l:"A2"},
+{id:"a2fa06",d:"Mijn oma is vijfentachtig jaar oud.",e:"My grandmother is eighty five years old.",c:"Family",l:"A2"},
+{id:"a2fa07",d:"We vieren Kerstmis altijd met de familie.",e:"We always celebrate Christmas with the family.",c:"Family",l:"A2"},
+{id:"a2fa08",d:"Mijn kinderen gaan naar de basisschool.",e:"My children go to primary school.",c:"Family",l:"A2"},
+{id:"a2fa09",d:"Wij zijn al tien jaar getrouwd.",e:"We have been married for ten years.",c:"Family",l:"A2"},
+{id:"a2fa10",d:"Mijn zus woont in het buitenland.",e:"My sister lives abroad.",c:"Family",l:"A2"},
+{id:"a2fa11",d:"Mijn neef studeert medicijnen.",e:"My nephew is studying medicine.",c:"Family",l:"A2"},
+{id:"a2fa12",d:"Wij eten elke zondag samen.",e:"We eat together every Sunday.",c:"Family",l:"A2"},
+{id:"a2fa13",d:"Mijn vader is met pensioen.",e:"My father is retired.",c:"Family",l:"A2"},
+{id:"a2fa14",d:"Mijn dochter is erg sportief.",e:"My daughter is very sporty.",c:"Family",l:"A2"},
+{id:"a2fa15",d:"Wij verwachten een baby.",e:"We are expecting a baby.",c:"Family",l:"A2"},
+/* ── A2 Free Time ── */
+{id:"a2ft01",d:"Ik ga in de zomer op vakantie naar het buitenland.",e:"I go on holiday abroad in the summer.",c:"Free Time",l:"A2"},
+{id:"a2ft02",d:"Ik houd van fietsen in het park.",e:"I like cycling in the park.",c:"Free Time",l:"A2"},
+{id:"a2ft03",d:"In het weekend ga ik graag wandelen.",e:"At the weekend I like to go walking.",c:"Free Time",l:"A2"},
+{id:"a2ft04",d:"Ik lees elke avond een boek voor het slapen.",e:"I read a book every evening before sleeping.",c:"Free Time",l:"A2"},
+{id:"a2ft05",d:"Mijn favoriete sport is zwemmen.",e:"My favourite sport is swimming.",c:"Free Time",l:"A2"},
+{id:"a2ft06",d:"Ik ga graag naar het museum.",e:"I like going to the museum.",c:"Free Time",l:"A2"},
+{id:"a2ft07",d:"Wij gaan dit weekend naar het strand.",e:"We are going to the beach this weekend.",c:"Free Time",l:"A2"},
+{id:"a2ft08",d:"Ik speel tennis op zondagochtend.",e:"I play tennis on Sunday morning.",c:"Free Time",l:"A2"},
+{id:"a2ft09",d:"Ik kijk graag naar documentaires.",e:"I like watching documentaries.",c:"Free Time",l:"A2"},
+{id:"a2ft10",d:"Mijn hobby is fotograferen.",e:"My hobby is photography.",c:"Free Time",l:"A2"},
+{id:"a2ft11",d:"Ik ga vanavond naar de bioscoop.",e:"I am going to the cinema tonight.",c:"Free Time",l:"A2"},
+{id:"a2ft12",d:"We spelen elke vrijdag bordspellen.",e:"We play board games every Friday.",c:"Free Time",l:"A2"},
+{id:"a2ft13",d:"Ik doe yoga op dinsdagochtend.",e:"I do yoga on Tuesday morning.",c:"Free Time",l:"A2"},
+{id:"a2ft14",d:"Ik leer koken in een cursus.",e:"I am learning to cook in a course.",c:"Free Time",l:"A2"},
+{id:"a2ft15",d:"Wij gaan volgend jaar naar Italie.",e:"We are going to Italy next year.",c:"Free Time",l:"A2"},
+/* ── A1/A2 Numbers & Time ── */
+{id:"a1n01",d:"Een, twee, drie.",e:"One, two, three.",c:"Numbers",l:"A1"},
+{id:"a1n02",d:"Vier, vijf, zes.",e:"Four, five, six.",c:"Numbers",l:"A1"},
+{id:"a1n03",d:"Zeven, acht, negen, tien.",e:"Seven, eight, nine, ten.",c:"Numbers",l:"A1"},
+{id:"a1n04",d:"Ik heb twintig euro.",e:"I have twenty euros.",c:"Numbers",l:"A1"},
+{id:"a1n05",d:"Het is vijf uur.",e:"It is five o clock.",c:"Numbers",l:"A1"},
+{id:"a1n06",d:"Het is kwart over drie.",e:"It is quarter past three.",c:"Numbers",l:"A1"},
+{id:"a1n07",d:"Het is half vier.",e:"It is half past three.",c:"Numbers",l:"A1"},
+{id:"a1n08",d:"Het is de eerste januari.",e:"It is the first of January.",c:"Numbers",l:"A1"},
+{id:"a1n09",d:"Mijn verjaardag is in mei.",e:"My birthday is in May.",c:"Numbers",l:"A1"},
+{id:"a1n10",d:"Het is kwart voor tien.",e:"It is quarter to ten.",c:"Numbers",l:"A1"},
+{id:"a2n01",d:"De trein vertrekt om kwart voor negen.",e:"The train leaves at quarter to nine.",c:"Numbers",l:"A2"},
+{id:"a2n02",d:"Ik werk veertig uur per week.",e:"I work forty hours a week.",c:"Numbers",l:"A2"},
+{id:"a2n03",d:"Het is tweehonderd vijftig euro.",e:"It is two hundred and fifty euros.",c:"Numbers",l:"A2"},
+{id:"a2n04",d:"De vergadering duurt twee uur.",e:"The meeting lasts two hours.",c:"Numbers",l:"A2"},
+{id:"a2n05",d:"Ik ben hier al drie weken.",e:"I have been here for three weeks already.",c:"Numbers",l:"A2"},
+{id:"a2n06",d:"De vlucht duurt drie uur en twintig minuten.",e:"The flight takes three hours and twenty minutes.",c:"Numbers",l:"A2"},
+{id:"a2n07",d:"Het restaurant is open van twaalf tot tien.",e:"The restaurant is open from twelve to ten.",c:"Numbers",l:"A2"},
+{id:"a2n08",d:"Ik ben op de tiende van deze maand jarig.",e:"My birthday is on the tenth of this month.",c:"Numbers",l:"A2"},
+{id:"a2n09",d:"Er wonen meer dan een miljoen mensen in Amsterdam.",e:"More than a million people live in Amsterdam.",c:"Numbers",l:"A2"},
+{id:"a2n10",d:"De winkel sluit om half acht.",e:"The shop closes at half past seven.",c:"Numbers",l:"A2"},
+/* ── A2 Weather ── */
+{id:"a2we01",d:"Het is morgen waarschijnlijk bewolkt.",e:"It will probably be cloudy tomorrow.",c:"Weather",l:"A2"},
+{id:"a2we02",d:"De temperatuur is tien graden vandaag.",e:"The temperature is ten degrees today.",c:"Weather",l:"A2"},
+{id:"a2we03",d:"Er is kans op regen in de middag.",e:"There is a chance of rain in the afternoon.",c:"Weather",l:"A2"},
+{id:"a2we04",d:"Het wordt warmer volgende week.",e:"It will get warmer next week.",c:"Weather",l:"A2"},
+{id:"a2we05",d:"Er staat een harde wind vandaag.",e:"There is a strong wind today.",c:"Weather",l:"A2"},
+{id:"a2we06",d:"Het is erg vochtig buiten.",e:"It is very humid outside.",c:"Weather",l:"A2"},
+{id:"a2we07",d:"Neem een paraplu mee, het gaat regenen.",e:"Take an umbrella, it is going to rain.",c:"Weather",l:"A2"},
+{id:"a2we08",d:"Het vriest vannacht.",e:"It will freeze tonight.",c:"Weather",l:"A2"},
+{id:"a2we09",d:"De lente begint in maart.",e:"Spring begins in March.",c:"Weather",l:"A2"},
+{id:"a2we10",d:"In Nederland regent het vaak.",e:"In the Netherlands it often rains.",c:"Weather",l:"A2"},
+/* ── A2 School ── */
+{id:"a2sc01",d:"Ik studeer Nederlands aan de hogeschool.",e:"I study Dutch at university.",c:"School",l:"A2"},
+{id:"a2sc02",d:"De les begint om negen uur.",e:"The lesson starts at nine o clock.",c:"School",l:"A2"},
+{id:"a2sc03",d:"Ik heb mijn huiswerk niet gemaakt.",e:"I have not done my homework.",c:"School",l:"A2"},
+{id:"a2sc04",d:"Kunt u dit woord spellen?",e:"Can you spell this word?",c:"School",l:"A2"},
+{id:"a2sc05",d:"Ik begrijp de oefening niet.",e:"I do not understand the exercise.",c:"School",l:"A2"},
+{id:"a2sc06",d:"Mag ik naar het toilet?",e:"May I go to the toilet?",c:"School",l:"A2"},
+{id:"a2sc07",d:"Wanneer is het volgende examen?",e:"When is the next exam?",c:"School",l:"A2"},
+{id:"a2sc08",d:"Ik heb een goede cijfer gehaald.",e:"I got a good grade.",c:"School",l:"A2"},
+{id:"a2sc09",d:"De bibliotheek is open tot acht uur.",e:"The library is open until eight o clock.",c:"School",l:"A2"},
+{id:"a2sc10",d:"Kunt u de uitleg herhalen?",e:"Can you repeat the explanation?",c:"School",l:"A2"},
+/* ── A2 Housing ── */
+{id:"a2ho01",d:"Ik zoek een appartement in het centrum.",e:"I am looking for an apartment in the center.",c:"Housing",l:"A2"},
+{id:"a2ho02",d:"Hoeveel is de huur per maand?",e:"How much is the rent per month?",c:"Housing",l:"A2"},
+{id:"a2ho03",d:"Is er een balkon bij de woning?",e:"Is there a balcony with the property?",c:"Housing",l:"A2"},
+{id:"a2ho04",d:"De woning heeft drie slaapkamers.",e:"The property has three bedrooms.",c:"Housing",l:"A2"},
+{id:"a2ho05",d:"Is het gemeubileerd of leeg?",e:"Is it furnished or empty?",c:"Housing",l:"A2"},
+{id:"a2ho06",d:"Wanneer is de woning beschikbaar?",e:"When is the property available?",c:"Housing",l:"A2"},
+{id:"a2ho07",d:"De ketel is kapot.",e:"The boiler is broken.",c:"Housing",l:"A2"},
+{id:"a2ho08",d:"Er is een lekkage in de badkamer.",e:"There is a leak in the bathroom.",c:"Housing",l:"A2"},
+{id:"a2ho09",d:"Ik wil het huurcontract lezen.",e:"I want to read the rental contract.",c:"Housing",l:"A2"},
+{id:"a2ho10",d:"Is huisdieren toegestaan in dit appartement?",e:"Are pets allowed in this apartment?",c:"Housing",l:"A2"}
+];
+
+var VOCAB = [
+  {nl:"hallo",en:"hello",cat:"Basics"},
+  {nl:"goedemorgen",en:"good morning",cat:"Basics"},
+  {nl:"goedemiddag",en:"good afternoon",cat:"Basics"},
+  {nl:"goedenavond",en:"good evening",cat:"Basics"},
+  {nl:"goedenacht",en:"good night",cat:"Basics"},
+  {nl:"dank je wel",en:"thank you",cat:"Basics"},
+  {nl:"alstublieft",en:"here you go",cat:"Basics"},
+  {nl:"sorry",en:"sorry",cat:"Basics"},
+  {nl:"ja",en:"yes",cat:"Basics"},
+  {nl:"nee",en:"no",cat:"Basics"},
+  {nl:"graag gedaan",en:"you are welcome",cat:"Basics"},
+  {nl:"geen probleem",en:"no problem",cat:"Basics"},
+  {nl:"ik begrijp het niet",en:"I don't understand",cat:"Basics"},
+  {nl:"ik weet het niet",en:"I don't know",cat:"Basics"},
+  {nl:"tot ziens",en:"goodbye",cat:"Basics"},
+  {nl:"water",en:"water",cat:"Food"},
+  {nl:"koffie",en:"coffee",cat:"Food"},
+  {nl:"thee",en:"tea",cat:"Food"},
+  {nl:"melk",en:"milk",cat:"Food"},
+  {nl:"bier",en:"beer",cat:"Food"},
+  {nl:"wijn",en:"wine",cat:"Food"},
+  {nl:"brood",en:"bread",cat:"Food"},
+  {nl:"kaas",en:"cheese",cat:"Food"},
+  {nl:"appel",en:"apple",cat:"Food"},
+  {nl:"vlees",en:"meat",cat:"Food"},
+  {nl:"vis",en:"fish",cat:"Food"},
+  {nl:"soep",en:"soup",cat:"Food"},
+  {nl:"friet",en:"fries",cat:"Food"},
+  {nl:"ei",en:"egg",cat:"Food"},
+  {nl:"suiker",en:"sugar",cat:"Food"},
+  {nl:"zout",en:"salt",cat:"Food"},
+  {nl:"rijst",en:"rice",cat:"Food"},
+  {nl:"kip",en:"chicken",cat:"Food"},
+  {nl:"groente",en:"vegetables",cat:"Food"},
+  {nl:"station",en:"station",cat:"Travel"},
+  {nl:"bushalte",en:"bus stop",cat:"Travel"},
+  {nl:"trein",en:"train",cat:"Travel"},
+  {nl:"bus",en:"bus",cat:"Travel"},
+  {nl:"fiets",en:"bike",cat:"Travel"},
+  {nl:"vliegveld",en:"airport",cat:"Travel"},
+  {nl:"links",en:"left",cat:"Travel"},
+  {nl:"rechts",en:"right",cat:"Travel"},
+  {nl:"rechtdoor",en:"straight ahead",cat:"Travel"},
+  {nl:"kaartje",en:"ticket",cat:"Travel"},
+  {nl:"perron",en:"platform",cat:"Travel"},
+  {nl:"centrum",en:"city center",cat:"Travel"},
+  {nl:"hotel",en:"hotel",cat:"Travel"},
+  {nl:"tram",en:"tram",cat:"Travel"},
+  {nl:"metro",en:"metro",cat:"Travel"},
+  {nl:"ziekenhuis",en:"hospital",cat:"Daily Life"},
+  {nl:"apotheek",en:"pharmacy",cat:"Daily Life"},
+  {nl:"supermarkt",en:"supermarket",cat:"Daily Life"},
+  {nl:"bank",en:"bank",cat:"Daily Life"},
+  {nl:"postkantoor",en:"post office",cat:"Daily Life"},
+  {nl:"sleutels",en:"keys",cat:"Daily Life"},
+  {nl:"telefoon",en:"phone",cat:"Daily Life"},
+  {nl:"geld",en:"money",cat:"Daily Life"},
+  {nl:"pinpas",en:"debit card",cat:"Daily Life"},
+  {nl:"bon",en:"receipt",cat:"Daily Life"},
+  {nl:"afspraak",en:"appointment",cat:"Daily Life"},
+  {nl:"maandag",en:"Monday",cat:"Daily Life"},
+  {nl:"dinsdag",en:"Tuesday",cat:"Daily Life"},
+  {nl:"woensdag",en:"Wednesday",cat:"Daily Life"},
+  {nl:"donderdag",en:"Thursday",cat:"Daily Life"},
+  {nl:"vrijdag",en:"Friday",cat:"Daily Life"},
+  {nl:"zaterdag",en:"Saturday",cat:"Daily Life"},
+  {nl:"zondag",en:"Sunday",cat:"Daily Life"},
+  {nl:"moe",en:"tired",cat:"Feelings"},
+  {nl:"ziek",en:"sick",cat:"Feelings"},
+  {nl:"blij",en:"happy",cat:"Feelings"},
+  {nl:"verdrietig",en:"sad",cat:"Feelings"},
+  {nl:"boos",en:"angry",cat:"Feelings"},
+  {nl:"bang",en:"scared",cat:"Feelings"},
+  {nl:"honger",en:"hunger",cat:"Feelings"},
+  {nl:"dorst",en:"thirst",cat:"Feelings"},
+  {nl:"moe",en:"tired",cat:"Feelings"},
+  {nl:"hoofdpijn",en:"headache",cat:"Health"},
+  {nl:"koorts",en:"fever",cat:"Health"},
+  {nl:"hoest",en:"cough",cat:"Health"},
+  {nl:"verkouden",en:"having a cold",cat:"Health"},
+  {nl:"pijn",en:"pain",cat:"Health"},
+  {nl:"medicijn",en:"medicine",cat:"Health"},
+  {nl:"recept",en:"prescription",cat:"Health"},
+  {nl:"dokter",en:"doctor",cat:"Health"},
+  {nl:"ambulance",en:"ambulance",cat:"Health"},
+  {nl:"vader",en:"father",cat:"Family"},
+  {nl:"moeder",en:"mother",cat:"Family"},
+  {nl:"broer",en:"brother",cat:"Family"},
+  {nl:"zus",en:"sister",cat:"Family"},
+  {nl:"man",en:"husband",cat:"Family"},
+  {nl:"vrouw",en:"wife",cat:"Family"},
+  {nl:"kind",en:"child",cat:"Family"},
+  {nl:"opa",en:"grandfather",cat:"Family"},
+  {nl:"oma",en:"grandmother",cat:"Family"},
+  {nl:"neef",en:"nephew / cousin",cat:"Family"},
+  {nl:"winkel",en:"shop",cat:"Shopping"},
+  {nl:"maat",en:"size",cat:"Shopping"},
+  {nl:"aanbieding",en:"sale / offer",cat:"Shopping"},
+  {nl:"korting",en:"discount",cat:"Shopping"},
+  {nl:"duur",en:"expensive",cat:"Shopping"},
+  {nl:"goedkoop",en:"cheap",cat:"Shopping"},
+  {nl:"groot",en:"big",cat:"Adjectives"},
+  {nl:"klein",en:"small",cat:"Adjectives"},
+  {nl:"warm",en:"warm",cat:"Adjectives"},
+  {nl:"koud",en:"cold",cat:"Adjectives"},
+  {nl:"lekker",en:"tasty / nice",cat:"Adjectives"},
+  {nl:"mooi",en:"beautiful",cat:"Adjectives"},
+  {nl:"snel",en:"fast",cat:"Adjectives"},
+  {nl:"langzaam",en:"slow",cat:"Adjectives"},
+  {nl:"nieuw",en:"new",cat:"Adjectives"},
+  {nl:"oud",en:"old",cat:"Adjectives"},
+  {nl:"open",en:"open",cat:"Adjectives"},
+  {nl:"dicht",en:"closed",cat:"Adjectives"},
+  {nl:"vers",en:"fresh",cat:"Adjectives"},
+  {nl:"zwaar",en:"heavy",cat:"Adjectives"},
+  {nl:"licht",en:"light",cat:"Adjectives"},
+  {nl:"huis",en:"house",cat:"Housing"},
+  {nl:"kamer",en:"room",cat:"Housing"},
+  {nl:"slaapkamer",en:"bedroom",cat:"Housing"},
+  {nl:"badkamer",en:"bathroom",cat:"Housing"},
+  {nl:"keuken",en:"kitchen",cat:"Housing"},
+  {nl:"tuin",en:"garden",cat:"Housing"},
+  {nl:"balkon",en:"balcony",cat:"Housing"},
+  {nl:"huur",en:"rent",cat:"Housing"},
+  {nl:"sleutel",en:"key",cat:"Housing"},
+  {nl:"buur",en:"neighbour",cat:"Housing"},
+  {nl:"school",en:"school",cat:"School"},
+  {nl:"leraar",en:"teacher",cat:"School"},
+  {nl:"student",en:"student",cat:"School"},
+  {nl:"boek",en:"book",cat:"School"},
+  {nl:"les",en:"lesson",cat:"School"},
+  {nl:"huiswerk",en:"homework",cat:"School"},
+  {nl:"examen",en:"exam",cat:"School"},
+  {nl:"cijfer",en:"grade",cat:"School"},
+  {nl:"pen",en:"pen",cat:"School"},
+  {nl:"bibliotheek",en:"library",cat:"School"},
+  {nl:"werk",en:"work",cat:"Work"},
+  {nl:"kantoor",en:"office",cat:"Work"},
+  {nl:"collega",en:"colleague",cat:"Work"},
+  {nl:"vergadering",en:"meeting",cat:"Work"},
+  {nl:"baas",en:"boss",cat:"Work"},
+  {nl:"salaris",en:"salary",cat:"Work"},
+  {nl:"vakantie",en:"holiday",cat:"Work"},
+  {nl:"deadline",en:"deadline",cat:"Work"},
+  {nl:"computer",en:"computer",cat:"Work"},
+  {nl:"e-mail",en:"email",cat:"Work"},
+  {nl:"regen",en:"rain",cat:"Weather"},
+  {nl:"zon",en:"sun",cat:"Weather"},
+  {nl:"wind",en:"wind",cat:"Weather"},
+  {nl:"sneeuw",en:"snow",cat:"Weather"},
+  {nl:"bewolkt",en:"cloudy",cat:"Weather"},
+  {nl:"temperatuur",en:"temperature",cat:"Weather"},
+  {nl:"paraplu",en:"umbrella",cat:"Weather"},
+  {nl:"storm",en:"storm",cat:"Weather"},
+  {nl:"lente",en:"spring",cat:"Weather"},
+  {nl:"zomer",en:"summer",cat:"Weather"},
+  {nl:"herfst",en:"autumn",cat:"Weather"},
+  {nl:"winter",en:"winter",cat:"Weather"}
 ];
 
 var CATS = [
-  {id:"sve",  label:"Sve kategorije", icon:"NL", desc:"Svih 160 recˇenica"},
-  {id:"Pozdrav", label:"Pozdrav i osnove", icon:"👋", desc:"30 izraza"},
-  {id:"Hrana",   label:"Hrana i pice",    icon:"🍽", desc:"25 izraza"},
-  {id:"Smjer",   label:"Putovanje",       icon:"🚆", desc:"25 izraza"},
-  {id:"Zivot",   label:"Svakodnevni zivot",icon:"🏠",desc:"30 izraza"},
-  {id:"Razgovor",label:"Razgovor",        icon:"💬", desc:"20 izraza"},
-  {id:"Hotel",   label:"Hotel",           icon:"🏨", desc:"15 izraza"},
-  {id:"Kupnja",  label:"Kupovina",        icon:"🛍", desc:"15 izraza"}
+  {id:"sve",label:"All",icon:"NL",desc:"All sentences"},
+  {id:"Greetings",label:"Greetings",icon:"👋",desc:"Greetings and basics"},
+  {id:"Food",label:"Food",icon:"🍽",desc:"Eating and drinking"},
+  {id:"Directions",label:"Directions",icon:"🚆",desc:"Transport and navigation"},
+  {id:"Daily Life",label:"Daily Life",icon:"🏠",desc:"Everyday situations"},
+  {id:"Conversation",label:"Conversation",icon:"💬",desc:"Small talk and introductions"},
+  {id:"Hotel",label:"Hotel",icon:"🏨",desc:"Accommodation"},
+  {id:"Shopping",label:"Shopping",icon:"🛍",desc:"Shops and buying"},
+  {id:"Work",label:"Work",icon:"💼",desc:"Office and jobs (A2)"},
+  {id:"Health",label:"Health",icon:"🏥",desc:"Illness and doctors (A2)"},
+  {id:"Family",label:"Family",icon:"👨‍👩‍👧",desc:"Family life (A2)"},
+  {id:"Free Time",label:"Free Time",icon:"🎸",desc:"Hobbies and leisure (A2)"},
+  {id:"Numbers",label:"Numbers",icon:"🔢",desc:"Numbers and time"},
+  {id:"Weather",label:"Weather",icon:"🌦",desc:"Weather (A2)"},
+  {id:"School",label:"School",icon:"📚",desc:"School and studying (A2)"},
+  {id:"Housing",label:"Housing",icon:"🏡",desc:"Apartments and renting (A2)"}
 ];
 
 var MODES = [
-  {id:0, num:"①", t:"Utipkaj sto cujes",   d:"Cues nizozemski i tipkas ga. Najteze i najkorisnije."},
-  {id:1, num:"②", t:"Audio → Znacenje",    d:"Cues nizozemski i biras prijevod od 4 opcije."},
-  {id:2, num:"③", t:"Slozi recenicu",      d:"Vides engleski i slazˇes nizozemske rijeci."},
-  {id:3, num:"④", t:"Mijesano (preporuka)",d:"Automatski mijenja sve tri vrste vjezbi."}
+  {id:0,num:"①",t:"Type what you hear",d:"You hear Dutch and type it. Best exercise for listening."},
+  {id:1,num:"②",t:"Audio to meaning",d:"You hear Dutch and pick one of 4 translations."},
+  {id:2,num:"③",t:"Build a sentence",d:"You see English and arrange the Dutch words."},
+  {id:3,num:"④",t:"Vocabulary EN to NL",d:"You see an English word and write it in Dutch."},
+  {id:4,num:"⑤",t:"Mixed (recommended)",d:"Automatically rotates all four exercise types."}
 ];
 
 var selCat = "sve";
-var selMode = 3;
+var selMode = 4;
+var selLvlVal = "sve";
 var sess = null;
 var curP = null;
+var curV = null;
 var answered = false;
 var bAns = [];
 var bWords = [];
+var sessMode = 4;
 
-/* ── TTS ── */
 var synth = window.speechSynthesis;
 var nlVoice = null;
 
@@ -353,15 +785,11 @@ function initVoices() {
   var voices = synth.getVoices();
   for (var i = 0; i < voices.length; i++) {
     if (voices[i].lang === "nl-NL" || voices[i].lang.indexOf("nl") === 0) {
-      nlVoice = voices[i];
-      break;
+      nlVoice = voices[i]; break;
     }
   }
 }
-
-if (synth.onvoiceschanged !== undefined) {
-  synth.onvoiceschanged = initVoices;
-}
+if (synth.onvoiceschanged !== undefined) synth.onvoiceschanged = initVoices;
 initVoices();
 setTimeout(initVoices, 500);
 setTimeout(initVoices, 2000);
@@ -369,34 +797,12 @@ setTimeout(initVoices, 2000);
 function speak(text, rate) {
   rate = rate || 1.0;
   initVoices();
-  // NO cancel() — Chrome silently drops utterances if cancel+speak in same tick
   var u = new SpeechSynthesisUtterance(text);
-  u.lang = "nl-NL";
-  u.rate = rate;
-  u.pitch = 1.0;
-  if (nlVoice) {
-    u.voice = nlVoice;
-  }
-  u.onerror = function(e) { console.log("TTS err:", e.error); };
-  u.onstart = function() { console.log("TTS started, voice:", u.voice ? u.voice.name : "default", "lang:", u.lang); };
+  u.lang = "nl-NL"; u.rate = rate; u.pitch = 1.0;
+  if (nlVoice) u.voice = nlVoice;
   synth.speak(u);
 }
 
-function debugTTS() {
-  var voices = synth.getVoices();
-  var msg = "Ukupno glasova: " + voices.length + "\n";
-  var nlVoices = voices.filter(function(v){ return v.lang.indexOf("nl") === 0; });
-  msg += "NL glasovi: " + nlVoices.length + "\n";
-  for(var i=0; i<nlVoices.length; i++) msg += "  - " + nlVoices[i].name + " (" + nlVoices[i].lang + ")\n";
-  if(nlVoices.length === 0) msg += "NEMA NL GLASOVA — Chrome nije preuzeo jezicni paket!\n";
-  msg += "\nPokusavam reproducirati testnu recenicu...";
-  alert(msg);
-  var u = new SpeechSynthesisUtterance("Hallo, hoe gaat het?");
-  u.lang = "nl-NL";
-  synth.speak(u);
-}
-
-/* ── NAV ── */
 function show(id) {
   var pages = document.querySelectorAll(".page");
   for (var i = 0; i < pages.length; i++) pages[i].classList.remove("on");
@@ -404,13 +810,17 @@ function show(id) {
 }
 
 function goHome() {
-  synth.cancel();
-  curP = null;
-  answered = false;
+  synth.cancel(); curP = null; curV = null; answered = false;
   show("pg-home");
 }
 
-/* ── HOME ── */
+function selLvl(v) {
+  selLvlVal = v;
+  document.getElementById("lvl-sve").classList.toggle("on", v === "sve");
+  document.getElementById("lvl-A1").classList.toggle("on", v === "A1");
+  document.getElementById("lvl-A2").classList.toggle("on", v === "A2");
+}
+
 function buildHome() {
   var cg = document.getElementById("cgrid");
   cg.innerHTML = "";
@@ -423,7 +833,6 @@ function buildHome() {
       cg.appendChild(d);
     })(CATS[i]);
   }
-
   var ml = document.getElementById("mlist");
   ml.innerHTML = "";
   for (var j = 0; j < MODES.length; j++) {
@@ -437,10 +846,11 @@ function buildHome() {
   }
 }
 
-/* ── SESSION ── */
 function getPool() {
-  if (selCat === "sve") return DATA;
-  return DATA.filter(function(p) { return p.c === selCat; });
+  var pool = DATA;
+  if (selCat !== "sve") pool = pool.filter(function(p) { return p.c === selCat; });
+  if (selLvlVal !== "sve") pool = pool.filter(function(p) { return p.l === selLvlVal; });
+  return pool;
 }
 
 function shuffle(a) {
@@ -453,66 +863,72 @@ function shuffle(a) {
 }
 
 function startSession() {
-  synth.cancel();
-  initVoices();
-  var pool = shuffle(getPool());
-  var n = Math.min(parseInt(document.getElementById("qcount").value), pool.length);
-  sess = { phrases: pool.slice(0, n), idx: 0, correct: 0, total: n };
+  synth.cancel(); initVoices();
+  sessMode = selMode;
+  if (sessMode === 3) {
+    var vpool = shuffle(VOCAB);
+    var n = Math.min(parseInt(document.getElementById("qcount").value), vpool.length);
+    sess = {phrases:vpool.slice(0,n), idx:0, correct:0, total:n, isVocab:true};
+  } else {
+    var pool = shuffle(getPool());
+    var n2 = Math.min(parseInt(document.getElementById("qcount").value), pool.length);
+    if (n2 === 0) { alert("No sentences for that combination. Try All levels or All categories."); return; }
+    sess = {phrases:pool.slice(0,n2), idx:0, correct:0, total:n2, isVocab:false};
+  }
   show("pg-ex");
   renderQ();
 }
 
 function pickMode() {
-  return selMode === 3 ? Math.floor(Math.random() * 3) : selMode;
+  if (sessMode === 4) return Math.floor(Math.random() * 4);
+  return sessMode;
 }
 
-/* ── RENDER QUESTION ── */
 function renderQ() {
-  curP = sess.phrases[sess.idx];
-  answered = false;
-  bAns = [];
-  bWords = [];
-
+  answered = false; bAns = []; bWords = [];
   var pct = Math.round(sess.idx / sess.total * 100);
   document.getElementById("pf").style.width = pct + "%";
   document.getElementById("qc").textContent = (sess.idx + 1) + " / " + sess.total;
-
   var mode = pickMode();
   var el = document.getElementById("excontent");
+  if (mode === 3 || sess.isVocab) {
+    curV = sess.phrases[sess.idx]; curP = null;
+    renderVocab(el);
+  } else {
+    curP = sess.phrases[sess.idx]; curV = null;
+    if (mode === 0) renderType(el);
+    else if (mode === 1) renderMC(el);
+    else renderBuilder(el);
+  }
+}
 
-  if (mode === 0) renderType(el);
-  else if (mode === 1) renderMC(el);
-  else renderBuilder(el);
+function lvlBadge(l) {
+  return "<span class='lvl-badge " + (l === "A1" ? "a1" : "a2") + "'>" + l + "</span>";
 }
 
 function audioZoneHTML() {
   return "<div class='azone'>" +
-    "<button class='pbig' id='pbig' onclick='speak(curP.d, 1.0)'>&#9654;</button>" +
+    "<button class='pbig' onclick='speak(curP.d, 1.0)'>&#9654;</button>" +
     "<div class='pbtns'>" +
-      "<button class='pbtn' onclick='speak(curP.d, 1.0)'>&#9654; normalno</button>" +
-      "<button class='pbtn' onclick='speak(curP.d, 0.6)'>&#9654; sporo</button>" +
+      "<button class='pbtn' onclick='speak(curP.d, 1.0)'>&#9654; normal</button>" +
+      "<button class='pbtn' onclick='speak(curP.d, 0.6)'>&#9654; slow</button>" +
     "</div>" +
-    "<div class='ahint'>klikni &#9654; za slusanje &middot; sporo = 0.6&times; brzina</div>" +
+    "<div class='ahint'>click &#9654; to listen</div>" +
   "</div>";
 }
 
-/* TYPE */
 function renderType(el) {
   el.innerHTML = "<div class='ecard'>" +
-    "<div class='etype'>&#9312; utipkaj sto cujes</div>" +
-    "<div class='cpill'>" + curP.c + "</div>" +
+    "<div class='etype'>&#9312; type what you hear</div>" +
+    lvlBadge(curP.l) + "<span class='cpill'>" + curP.c + "</span>" +
     audioZoneHTML() +
-    "<div style='font-size:10px;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:7px'>utipkaj na nizozemskom:</div>" +
+    "<div style='font-size:10px;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:7px'>type in Dutch:</div>" +
     "<input class='tinp' id='tinp' type='text' placeholder='...' autocomplete='off' autocorrect='off' autocapitalize='off' spellcheck='false'>" +
     "<div id='fb'></div>" +
-    "<div class='arow' id='arow'><button class='btn' onclick='checkType()'>Provjeri</button></div>" +
+    "<div class='arow' id='arow'><button class='btn' onclick='checkType()'>Check</button></div>" +
   "</div>";
-
   var inp = document.getElementById("tinp");
-  if (inp) {
-    inp.focus();
-    inp.onkeydown = function(e) { if (e.key === "Enter") checkType(); };
-  }
+  if (inp) { inp.focus(); inp.onkeydown = function(e) { if (e.key === "Enter") checkType(); }; }
 }
 
 function norm(s) {
@@ -529,71 +945,61 @@ function checkType() {
   inp.classList.add(ok ? "ok" : "bad");
   inp.disabled = true;
   sess.correct += ok ? 1 : 0;
-  showFB(ok);
+  showFB(ok, curP.d);
 }
 
-/* MC */
 function renderMC(el) {
-  var others = shuffle(DATA.filter(function(x) { return x.id !== curP.id; })).slice(0, 3);
+  var pool = selLvlVal !== "sve" ? DATA.filter(function(x){return x.l===selLvlVal;}) : DATA;
+  var others = shuffle(pool.filter(function(x){return x.id!==curP.id;})).slice(0,3);
   var opts = shuffle([curP].concat(others));
-
+  window._mcOpts = opts;
   var optsHTML = "";
   for (var i = 0; i < opts.length; i++) {
-    optsHTML += "<button class='mco' id='mco" + i + "' data-id='" + opts[i].id + "' onclick='checkMC(" + i + ")'>" + opts[i].e + "</button>";
+    optsHTML += "<button class='mco' id='mco" + i + "' onclick='checkMC(" + i + ")'>" + opts[i].e + "</button>";
   }
-
   el.innerHTML = "<div class='ecard'>" +
-    "<div class='etype'>&#9313; audio &rarr; znacenje</div>" +
-    "<div class='cpill'>" + curP.c + "</div>" +
+    "<div class='etype'>&#9313; audio &rarr; meaning</div>" +
+    lvlBadge(curP.l) + "<span class='cpill'>" + curP.c + "</span>" +
     audioZoneHTML() +
-    "<div style='font-size:10px;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:9px'>odaberi tocan prijevod:</div>" +
+    "<div style='font-size:10px;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:9px'>choose the correct translation:</div>" +
     "<div class='mcg'>" + optsHTML + "</div>" +
-    "<div id='fb'></div>" +
-    "<div class='arow' id='arow'></div>" +
+    "<div id='fb'></div><div class='arow' id='arow'></div>" +
   "</div>";
-
-  window._mcOpts = opts;
 }
 
 function checkMC(idx) {
   if (answered) return;
   answered = true;
   var opts = window._mcOpts;
-  var chosen = opts[idx];
-  var ok = chosen.id === curP.id;
+  var ok = opts[idx].id === curP.id;
   sess.correct += ok ? 1 : 0;
-
   var btns = document.querySelectorAll(".mco");
   for (var i = 0; i < btns.length; i++) {
     btns[i].disabled = true;
     if (opts[i].id === curP.id) btns[i].classList.add("ok");
     else if (i === idx && !ok) btns[i].classList.add("bad");
   }
-  showFB(ok);
+  showFB(ok, curP.d);
 }
 
-/* BUILDER */
 function renderBuilder(el) {
-  var words = curP.d.split(" ");
-  bWords = shuffle(words.map(function(w, i) { return {w: w, oi: i}; }));
-
+  bWords = shuffle(curP.d.split(" ").map(function(w,i){return{w:w,oi:i};}));
   var bankHTML = "";
   for (var i = 0; i < bWords.length; i++) {
     bankHTML += "<button class='chip' id='bc" + i + "' onclick='bAdd(" + i + ")'>" + bWords[i].w + "</button>";
   }
-
   el.innerHTML = "<div class='ecard'>" +
-    "<div class='etype'>&#9314; slozi recenicu</div>" +
-    "<div class='cpill'>" + curP.c + "</div>" +
+    "<div class='etype'>&#9314; build a sentence</div>" +
+    lvlBadge(curP.l) + "<span class='cpill'>" + curP.c + "</span>" +
     "<div class='eprompt'>" + curP.e + "</div>" +
-    "<div class='blbl'>tvoj odgovor:</div>" +
+    "<div class='blbl'>your answer:</div>" +
     "<div class='barea' id='barea'></div>" +
-    "<div class='blbl'>rijeci:</div>" +
-    "<div class='cbank' id='cbank'>" + bankHTML + "</div>" +
+    "<div class='blbl'>words:</div>" +
+    "<div class='cbank'>" + bankHTML + "</div>" +
     "<div id='fb'></div>" +
     "<div class='arow' id='arow'>" +
-      "<button class='btn' onclick='checkBuilder()'>Provjeri</button>" +
-      "<button class='btn gbtn sbtn' onclick='bClear()'>Obrisi</button>" +
+      "<button class='btn' onclick='checkBuilder()'>Check</button>" +
+      "<button class='btn gbtn sbtn' onclick='bClear()'>Clear</button>" +
     "</div>" +
   "</div>";
 }
@@ -602,19 +1008,15 @@ function bAdd(i) {
   if (answered) return;
   var chip = document.getElementById("bc" + i);
   if (!chip || chip.classList.contains("used")) return;
-  chip.classList.add("used");
-  bAns.push(i);
-  bRender();
+  chip.classList.add("used"); bAns.push(i); bRender();
 }
-
 function bRemove(i) {
   if (answered) return;
-  bAns = bAns.filter(function(x) { return x !== i; });
+  bAns = bAns.filter(function(x){return x!==i;});
   var bc = document.getElementById("bc" + i);
   if (bc) bc.classList.remove("used");
   bRender();
 }
-
 function bClear() {
   if (answered) return;
   bAns = [];
@@ -622,7 +1024,6 @@ function bClear() {
   for (var i = 0; i < chips.length; i++) chips[i].classList.remove("used");
   bRender();
 }
-
 function bRender() {
   var area = document.getElementById("barea");
   if (!area) return;
@@ -632,37 +1033,58 @@ function bRender() {
   }
   area.innerHTML = html;
 }
-
 function checkBuilder() {
   if (answered || !bAns.length) return;
-  var attempt = bAns.map(function(i) { return bWords[i].w; }).join(" ");
+  var attempt = bAns.map(function(i){return bWords[i].w;}).join(" ");
   var ok = norm(attempt) === norm(curP.d);
   answered = true;
   speak(curP.d, 1.0);
-
   var chips = document.querySelectorAll("#barea .chip");
   for (var i = 0; i < chips.length; i++) {
     chips[i].classList.remove("used");
     chips[i].classList.add(ok ? "cok" : "cbad");
   }
   sess.correct += ok ? 1 : 0;
-  showFB(ok);
+  showFB(ok, curP.d);
 }
 
-/* FEEDBACK */
-function showFB(ok) {
-  var fb = document.getElementById("fb");
-  if (ok) {
-    fb.innerHTML = "<div class='fb ok'>&#10003; Tocno!</div>";
-  } else {
-    fb.innerHTML = "<div class='fb bad'>&#10007; Netocno. Tocan odgovor:<div class='rev'>" + curP.d + "</div></div>";
-  }
+function renderVocab(el) {
+  el.innerHTML = "<div class='vocab-card'>" +
+    "<div class='etype'>&#9315; vocabulary: English &rarr; Dutch</div>" +
+    "<span class='cpill'>" + curV.cat + "</span>" +
+    "<div class='eng-word'>" + curV.en + "</div>" +
+    "<div class='eng-ctx'>write in Dutch:</div>" +
+    "<input class='vocab-inp' id='vinp' type='text' placeholder='...' autocomplete='off' autocorrect='off' autocapitalize='off' spellcheck='false'>" +
+    "<div id='fb'></div>" +
+    "<div class='arow' id='arow' style='justify-content:center'><button class='btn' onclick='checkVocab()'>Check</button></div>" +
+  "</div>";
+  var inp = document.getElementById("vinp");
+  if (inp) { inp.focus(); inp.onkeydown = function(e) { if (e.key === "Enter") checkVocab(); }; }
+}
 
+function checkVocab() {
+  if (answered) return;
+  var inp = document.getElementById("vinp");
+  var val = inp ? inp.value.trim() : "";
+  if (!val) return;
+  var ok = norm(val) === norm(curV.nl);
+  answered = true;
+  inp.classList.add(ok ? "ok" : "bad");
+  inp.disabled = true;
+  sess.correct += ok ? 1 : 0;
+  speak(curV.nl, 1.0);
+  showFB(ok, curV.nl);
+}
+
+function showFB(ok, correct) {
+  document.getElementById("fb").innerHTML = ok
+    ? "<div class='fb ok'>&#10003; Correct!</div>"
+    : "<div class='fb bad'>&#10007; Incorrect. Correct answer:<div class='rev'>" + correct + "</div></div>";
   var ar = document.getElementById("arow");
   ar.innerHTML = "";
   var nx = document.createElement("button");
   nx.className = "btn";
-  nx.textContent = (sess.idx + 1 < sess.total) ? "Sljedece →" : "Zavrsi →";
+  nx.textContent = (sess.idx + 1 < sess.total) ? "Next →" : "Finish →";
   nx.onclick = nextQ;
   ar.appendChild(nx);
 }
@@ -673,19 +1095,18 @@ function nextQ() {
   renderQ();
 }
 
-/* END */
 function showEnd() {
   var pct = Math.round(sess.correct / sess.total * 100);
   document.getElementById("escore").textContent = pct + "%";
-  var msg = pct >= 90 ? "Sjajno! Pravi Nederlandac." :
-            pct >= 70 ? "Vrlo dobro! Nastavi ovako." :
-            pct >= 50 ? "Dobar pocetak! Vjezˇbaj dalje." :
-                        "Ne brini, ponovi i bit ce bolje!";
-  document.getElementById("emsg").textContent = msg;
+  document.getElementById("emsg").textContent =
+    pct >= 90 ? "Excellent! Almost a native speaker." :
+    pct >= 70 ? "Well done! Keep it up." :
+    pct >= 50 ? "Good start! Practice more." :
+                "Keep going, you will improve!";
   document.getElementById("ebk").innerHTML =
-    "<div class='bki'><div class='bkv'>" + sess.correct + "</div><div class='bkl'>tocnih</div></div>" +
-    "<div class='bki'><div class='bkv'>" + (sess.total - sess.correct) + "</div><div class='bkl'>netocnih</div></div>" +
-    "<div class='bki'><div class='bkv'>" + sess.total + "</div><div class='bkl'>ukupno</div></div>";
+    "<div class='bki'><div class='bkv'>" + sess.correct + "</div><div class='bkl'>correct</div></div>" +
+    "<div class='bki'><div class='bkv'>" + (sess.total-sess.correct) + "</div><div class='bkl'>wrong</div></div>" +
+    "<div class='bki'><div class='bkv'>" + sess.total + "</div><div class='bkl'>total</div></div>";
   show("pg-end");
 }
 
